@@ -7,6 +7,7 @@
 
 import UIKit
 import SafariServices
+import FirebaseAuth
 
 
 class LoginViewController: UIViewController {
@@ -48,7 +49,7 @@ class LoginViewController: UIViewController {
         return field
     }()
     
-    let loginButton: UIButton = {
+    private let loginButton: UIButton = {
         let button = UIButton()
         button.setTitle("Log In", for: .normal)
         button.layer.masksToBounds = true
@@ -58,21 +59,21 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    let termsButton: UIButton = {
+    private let termsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Terms of service", for: .normal)
         button.setTitleColor(.secondaryLabel, for: .normal)
         return button
     }()
     
-    let privacyButton: UIButton = {
+    private let privacyButton: UIButton = {
         let button = UIButton()
         button.setTitle("Privacy Policy", for: .normal)
         button.setTitleColor(.secondaryLabel, for: .normal)
         return button
     }()
     
-    let createAccountButton: UIButton = {
+    private let createAccountButton: UIButton = {
         let button = UIButton()
         button.setTitle("New User? Create an Account", for: .normal)
         button.layer.masksToBounds = true
@@ -80,7 +81,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    let headerView: UIView = {
+    private let headerView: UIView = {
         let header = UIView()
         header.clipsToBounds = true
         let backgroundImageView = UIImageView(image: UIImage(named: "gradient"))
@@ -144,15 +145,35 @@ class LoginViewController: UIViewController {
     }
     
     
-    
     @objc private func didTapLoginButton() {
         passwordTextField.resignFirstResponder()
         usernameEmailField.resignFirstResponder()
         guard let usernameEmail = usernameEmailField.text, !usernameEmail.isEmpty, let password = passwordTextField.text, !password.isEmpty, password.count >= 6 else {
             return
         }
+        var username: String?
+        var email: String?
         // login functionality
-        
+        if usernameEmail.contains("@"), usernameEmail.contains(".") {
+            // email
+            email = usernameEmail
+        } else {
+            // username
+            username = usernameEmail
+        }
+        AuthManager.shared.loginUser(username: username, email: email, password: password) { (success) in
+            DispatchQueue.main.async {
+                if success {
+                    // user logged in
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    // error occured
+                    let alert = UIAlertController(title: "Log In Error", message: "We were unable to log you in", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     @objc private func didTapTermsButton() {
@@ -173,7 +194,8 @@ class LoginViewController: UIViewController {
     
     @objc private func didTapCreateAccountButton() {
         let vc = RegistrationViewController()
-        present(vc, animated: true, completion: nil)
+        vc.title = "Create Account"
+        present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 
 }
