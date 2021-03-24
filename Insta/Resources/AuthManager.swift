@@ -49,9 +49,6 @@ public class AuthManager {
                 completion(false)
             }
         }
-        
-        
-        
     }
     
     public func loginUser(username: String?, email: String?, password: String, completion: @escaping (Bool) -> Void) {
@@ -65,6 +62,21 @@ public class AuthManager {
             }
         } else if let username = username {
             print(username)
+        }
+    }
+    
+    
+    /// Attempt to log out firebase user
+    public func logOut(completion: (Bool) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            completion(true)
+            return
+        }
+        catch {
+            print(error.localizedDescription)
+            completion(false)
+            return
         }
     }
     
