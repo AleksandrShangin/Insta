@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3FF8EA9F74A3F36456B43104 /* Pods_Insta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F3A7076E496AFB0C80887B /* Pods_Insta.framework */; };
+		FA65A072260E11F600F9A881 /* IGFeedPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65A071260E11F600F9A881 /* IGFeedPostTableViewCell.swift */; };
+		FA65A077260E258200F9A881 /* IGFeedPostHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65A076260E258200F9A881 /* IGFeedPostHeaderTableViewCell.swift */; };
+		FA65A07A260E261A00F9A881 /* IGFeedPostActionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65A079260E261A00F9A881 /* IGFeedPostActionsTableViewCell.swift */; };
+		FA65A07D260E266100F9A881 /* IGFeedPostGeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65A07C260E266100F9A881 /* IGFeedPostGeneralTableViewCell.swift */; };
 		FA89CE212604F9D2004A827D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE202604F9D2004A827D /* AppDelegate.swift */; };
 		FA89CE232604F9D2004A827D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE222604F9D2004A827D /* SceneDelegate.swift */; };
 		FA89CE252604F9D2004A827D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE242604F9D2004A827D /* HomeViewController.swift */; };
@@ -39,6 +43,10 @@
 		08F3A7076E496AFB0C80887B /* Pods_Insta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Insta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF14AEBB96A64AA1C916242 /* Pods-Insta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Insta.debug.xcconfig"; path = "Target Support Files/Pods-Insta/Pods-Insta.debug.xcconfig"; sourceTree = "<group>"; };
 		F9305F96689D60D4124626C0 /* Pods-Insta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Insta.release.xcconfig"; path = "Target Support Files/Pods-Insta/Pods-Insta.release.xcconfig"; sourceTree = "<group>"; };
+		FA65A071260E11F600F9A881 /* IGFeedPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGFeedPostTableViewCell.swift; sourceTree = "<group>"; };
+		FA65A076260E258200F9A881 /* IGFeedPostHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGFeedPostHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		FA65A079260E261A00F9A881 /* IGFeedPostActionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGFeedPostActionsTableViewCell.swift; sourceTree = "<group>"; };
+		FA65A07C260E266100F9A881 /* IGFeedPostGeneralTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGFeedPostGeneralTableViewCell.swift; sourceTree = "<group>"; };
 		FA89CE1D2604F9D2004A827D /* Insta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Insta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA89CE202604F9D2004A827D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA89CE222604F9D2004A827D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +105,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		FA65A070260E10F700F9A881 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FA65A075260E21BB00F9A881 /* Home Feed */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FA65A075260E21BB00F9A881 /* Home Feed */ = {
+			isa = PBXGroup;
+			children = (
+				FA65A071260E11F600F9A881 /* IGFeedPostTableViewCell.swift */,
+				FA65A076260E258200F9A881 /* IGFeedPostHeaderTableViewCell.swift */,
+				FA65A079260E261A00F9A881 /* IGFeedPostActionsTableViewCell.swift */,
+				FA65A07C260E266100F9A881 /* IGFeedPostGeneralTableViewCell.swift */,
+			);
+			path = "Home Feed";
+			sourceTree = "<group>";
+		};
 		FA89CE142604F9D2004A827D = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +178,7 @@
 		FA89CE372604FC1F004A827D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA65A070260E10F700F9A881 /* Cells */,
 				FA89CE292604F9D9004A827D /* Assets.xcassets */,
 				FA89CE392604FC95004A827D /* Storyboards */,
 			);
@@ -341,19 +369,23 @@
 				FA89CE252604F9D2004A827D /* HomeViewController.swift in Sources */,
 				FA89CE212604F9D2004A827D /* AppDelegate.swift in Sources */,
 				FA89CE51260501E1004A827D /* RegistrationViewController.swift in Sources */,
+				FA65A077260E258200F9A881 /* IGFeedPostHeaderTableViewCell.swift in Sources */,
 				FA89CE66260505CB004A827D /* PostEditorViewController.swift in Sources */,
 				FA89CE8B2605F12E004A827D /* StorageManager.swift in Sources */,
 				FA89CE5426050323004A827D /* PostViewController.swift in Sources */,
 				FA89CE852605EE4F004A827D /* DatabaseManager.swift in Sources */,
 				FA89CE442604FF70004A827D /* NotificationsViewController.swift in Sources */,
+				FA65A072260E11F600F9A881 /* IGFeedPostTableViewCell.swift in Sources */,
 				FA89CE6326050574004A827D /* SearchResultViewController.swift in Sources */,
 				FA89CE4E260501BC004A827D /* LoginViewController.swift in Sources */,
 				FA89CEA226079484004A827D /* Extensions.swift in Sources */,
+				FA65A07D260E266100F9A881 /* IGFeedPostGeneralTableViewCell.swift in Sources */,
 				FA89CE6026050557004A827D /* SearchViewController.swift in Sources */,
 				FA89CE472604FF90004A827D /* ProfileViewController.swift in Sources */,
 				FA89CE882605F071004A827D /* AuthManager.swift in Sources */,
 				FA89CE232604F9D2004A827D /* SceneDelegate.swift in Sources */,
 				FA89CE402604FEA2004A827D /* CameraViewController.swift in Sources */,
+				FA65A07A260E261A00F9A881 /* IGFeedPostActionsTableViewCell.swift in Sources */,
 				FA89CE5D26050473004A827D /* ListViewController.swift in Sources */,
 				FA89CE5A2605041E004A827D /* SettingsViewController.swift in Sources */,
 			);
