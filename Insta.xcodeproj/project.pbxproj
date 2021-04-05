@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3FF8EA9F74A3F36456B43104 /* Pods_Insta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F3A7076E496AFB0C80887B /* Pods_Insta.framework */; };
+		FA640604261B297A003F72C1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA640603261B297A003F72C1 /* Models.swift */; };
 		FA65A072260E11F600F9A881 /* IGFeedPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65A071260E11F600F9A881 /* IGFeedPostTableViewCell.swift */; };
 		FA65A077260E258200F9A881 /* IGFeedPostHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65A076260E258200F9A881 /* IGFeedPostHeaderTableViewCell.swift */; };
 		FA65A07A260E261A00F9A881 /* IGFeedPostActionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA65A079260E261A00F9A881 /* IGFeedPostActionsTableViewCell.swift */; };
@@ -47,6 +48,7 @@
 		08F3A7076E496AFB0C80887B /* Pods_Insta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Insta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEF14AEBB96A64AA1C916242 /* Pods-Insta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Insta.debug.xcconfig"; path = "Target Support Files/Pods-Insta/Pods-Insta.debug.xcconfig"; sourceTree = "<group>"; };
 		F9305F96689D60D4124626C0 /* Pods-Insta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Insta.release.xcconfig"; path = "Target Support Files/Pods-Insta/Pods-Insta.release.xcconfig"; sourceTree = "<group>"; };
+		FA640603261B297A003F72C1 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		FA65A071260E11F600F9A881 /* IGFeedPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGFeedPostTableViewCell.swift; sourceTree = "<group>"; };
 		FA65A076260E258200F9A881 /* IGFeedPostHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGFeedPostHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		FA65A079260E261A00F9A881 /* IGFeedPostActionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGFeedPostActionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		FA89CE362604FC14004A827D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FA640603261B297A003F72C1 /* Models.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				FA65A077260E258200F9A881 /* IGFeedPostHeaderTableViewCell.swift in Sources */,
 				FA89CE66260505CB004A827D /* PostEditorViewController.swift in Sources */,
 				FA89CE8B2605F12E004A827D /* StorageManager.swift in Sources */,
+				FA640604261B297A003F72C1 /* Models.swift in Sources */,
 				FA65A08026106AC200F9A881 /* FormTableViewCell.swift in Sources */,
 				FA89CE5426050323004A827D /* PostViewController.swift in Sources */,
 				FA65A08A2611B7B700F9A881 /* ProfileTabsCollectionReusableView.swift in Sources */,

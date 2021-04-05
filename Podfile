@@ -8,6 +8,8 @@ target 'Insta' do
   # Pods for Insta
 
   pod 'Appirater'
+  pod 'SDWebImage'
+
   # Firebase
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
