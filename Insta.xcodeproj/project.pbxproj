@@ -200,8 +200,8 @@
 			children = (
 				FA89CE202604F9D2004A827D /* AppDelegate.swift */,
 				FA89CE222604F9D2004A827D /* SceneDelegate.swift */,
-				FA89CE842605EE4F004A827D /* DatabaseManager.swift */,
 				FA89CE872605F071004A827D /* AuthManager.swift */,
+				FA89CE842605EE4F004A827D /* DatabaseManager.swift */,
 				FA89CE8A2605F12E004A827D /* StorageManager.swift */,
 				FA89CEA126079483004A827D /* Extensions.swift */,
 			);
