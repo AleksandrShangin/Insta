@@ -12,7 +12,11 @@ class ExploreViewController: UIViewController {
     
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.backgroundColor = .secondarySystemBackground
+        if #available(iOS 13.0, *) {
+            searchBar.backgroundColor = .secondarySystemBackground
+        } else {
+            // Fallback on earlier versions
+        }
         
         return searchBar
     }()
@@ -23,7 +27,11 @@ class ExploreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            // Fallback on earlier versions
+        }
         navigationController?.navigationBar.topItem?.titleView = searchBar
         
         let layout = UICollectionViewFlowLayout()

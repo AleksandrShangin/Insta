@@ -1,5 +1,6 @@
 PODS:
   - Appirater (2.3.1)
+  - ColorCompatibility (1.1.0)
   - Firebase/Analytics (7.7.0):
     - Firebase/Core
   - Firebase/Auth (7.7.0):
@@ -100,6 +101,7 @@ PODS:
 
 DEPENDENCIES:
   - Appirater
+  - ColorCompatibility
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
@@ -111,6 +113,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Appirater
+    - ColorCompatibility
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -131,6 +134,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Appirater: 44a4651f7912a17dc906b655f0c215d5bb768b84
+  ColorCompatibility: 7257750b5ac742db9c8b593966c6f8e06992149b
   Firebase: cd2ab85eec8170dc260186159f21072ecb679ad5
   FirebaseAnalytics: f3f8f75de34fe04141a69bb1c4bd7e24a80178e1
   FirebaseAuth: 76aa97ecd51e20ecd21321d08474d25f5d2b7b9f
@@ -149,6 +153,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
 
-PODFILE CHECKSUM: 62725285820760eb3571b87a95d3fba215e094e9
+PODFILE CHECKSUM: 83077ffd7bcfce16bafc08f5b550e2337fbe7f4a
 
 COCOAPODS: 1.10.1

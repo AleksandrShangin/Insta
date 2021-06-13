@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import ColorCompatibility
+
 
 
 protocol UserFollowTableViewCellDelegate: AnyObject {
@@ -25,19 +27,24 @@ struct UserRelationship {
 }
 
 
-class UserFollowTableViewCell: UITableViewCell {
+final class UserFollowTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+    
     static let identifier = "UserFollowTableViewCell"
     
     weak var delegate: UserFollowTableViewCellDelegate?
     
-    var model: UserRelationship?
+    private var model: UserRelationship?
+    
+    
+    // MARK: - UI
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.backgroundColor = .secondarySystemBackground
+        imageView.backgroundColor = ColorCompatibility.secondarySystemBackground
         return imageView
     }()
     
@@ -54,17 +61,18 @@ class UserFollowTableViewCell: UITableViewCell {
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 16, weight: .regular)
         label.text = "@joe"
-        label.textColor = .secondaryLabel
+        label.textColor = ColorCompatibility.secondaryLabel
         return label
     }()
     
     private let followButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .link
-        
+        button.backgroundColor = ColorCompatibility.link
         return button
     }()
     
+    
+    // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -77,40 +85,8 @@ class UserFollowTableViewCell: UITableViewCell {
         followButton.addTarget(self, action: #selector(didTapFollowButton), for: .touchUpInside)
     }
     
-    @objc func didTapFollowButton() {
-        guard let model = model else {
-            return
-        }
-        delegate?.didTapFollowUnfollowButton(model: model)
-    }
-    
-    public func configure(with model: UserRelationship) {
-        self.model = model
-        nameLabel.text = model.name
-        usernameLabel.text = model.username
-        switch model.type {
-        case .following:
-            followButton.setTitle("Unfollow", for: .normal)
-            followButton.setTitleColor(.label, for: .normal)
-            followButton.backgroundColor = .systemBackground
-            followButton.layer.borderWidth = 1
-            followButton.layer.borderColor = UIColor.label.cgColor
-        case .not_following:
-            followButton.setTitle("Follow", for: .normal)
-            followButton.setTitleColor(.white, for: .normal)
-            followButton.backgroundColor = .link
-            followButton.layer.borderWidth = 0
-        }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        profileImageView.image = nil
-        nameLabel.text = nil
-        usernameLabel.text = nil
-        followButton.setTitle(nil, for: .normal)
-        followButton.layer.borderWidth = 0
-        followButton.backgroundColor = nil
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func layoutSubviews() {
@@ -141,9 +117,41 @@ class UserFollowTableViewCell: UITableViewCell {
                                      height: labelHeight)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        profileImageView.image = nil
+        nameLabel.text = nil
+        usernameLabel.text = nil
+        followButton.setTitle(nil, for: .normal)
+        followButton.layer.borderWidth = 0
+        followButton.backgroundColor = nil
+    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    @objc func didTapFollowButton() {
+        guard let model = model else {
+            return
+        }
+        delegate?.didTapFollowUnfollowButton(model: model)
+    }
+    
+    
+    public func configure(with model: UserRelationship) {
+        self.model = model
+        nameLabel.text = model.name
+        usernameLabel.text = model.username
+        switch model.type {
+        case .following:
+            followButton.setTitle("Unfollow", for: .normal)
+            followButton.setTitleColor(ColorCompatibility.label, for: .normal)
+            followButton.backgroundColor = ColorCompatibility.systemBackground
+            followButton.layer.borderWidth = 1
+            followButton.layer.borderColor = ColorCompatibility.label.cgColor
+        case .not_following:
+            followButton.setTitle("Follow", for: .normal)
+            followButton.setTitleColor(.white, for: .normal)
+            followButton.backgroundColor = ColorCompatibility.link
+            followButton.layer.borderWidth = 0
+        }
     }
     
     

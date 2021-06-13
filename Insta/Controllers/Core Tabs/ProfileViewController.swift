@@ -6,19 +6,28 @@
 //
 
 import UIKit
+import ColorCompatibility
 
 
 /// Profile view controller
 final class ProfileViewController: UIViewController {
 
-    private var collectionView: UICollectionView?
+    // MARK: - Properties
     
     private var userPosts = [UserPost]()
     
     
+    // MARK: - UI
+    
+    private var collectionView: UICollectionView?
+    
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        
+        view.backgroundColor = ColorCompatibility.systemBackground
         configureNavigationBar()
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -28,8 +37,6 @@ final class ProfileViewController: UIViewController {
         let size = (view.width - 4) / 3
         layout.itemSize = CGSize(width: size, height: size)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
-        
         // Cell
         collectionView?.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         // Headers
@@ -53,8 +60,15 @@ final class ProfileViewController: UIViewController {
         collectionView?.frame = view.bounds
     }
     
+    
+    // MARK: - Private Methods
+    
     private func configureNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(didTapSettings))
+        if #available(iOS 13.0, *) {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(didTapSettings))
+        } else {
+            // Fallback on earlier versions
+        }
     }
 
     @objc private func didTapSettings() {
@@ -177,7 +191,6 @@ extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate
 
 
 extension ProfileViewController: ProfileTabsCollectionReusableViewDelegate {
-    
     func didTapGridButtonTab() {
         // Reload collection view with data
         
@@ -187,7 +200,6 @@ extension ProfileViewController: ProfileTabsCollectionReusableViewDelegate {
         // Reload collection view with data
         
     }
-    
     
 }
 

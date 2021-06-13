@@ -36,12 +36,16 @@ struct PostRenderViewModel {
 
 
 
-class PostViewController: UIViewController {
+final class PostViewController: UIViewController {
 
+    // MARK: - Properties
+    
     private let model: UserPost?
     
     private var renderModels = [PostRenderViewModel]()
     
+    
+    // MARK: - UI
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -72,11 +76,11 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+        // Table View
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        view.backgroundColor = .systemBackground
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -123,7 +127,6 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
         case .primaryContent(_): return 1
         case .header(_): return 1
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

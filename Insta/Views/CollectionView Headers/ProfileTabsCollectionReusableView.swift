@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import ColorCompatibility
+
+
 
 protocol ProfileTabsCollectionReusableViewDelegate: AnyObject {
     func didTapGridButtonTab()
@@ -13,23 +16,31 @@ protocol ProfileTabsCollectionReusableViewDelegate: AnyObject {
 }
 
 
+
 class ProfileTabsCollectionReusableView: UICollectionReusableView {
+    
+    // MARK: - Properties
     
     static let identifier = "ProfileTabsCollectionReusableView"
     
     public weak var delegate: ProfileTabsCollectionReusableViewDelegate?
-    
     
     struct Constants {
         static let padding: CGFloat = 8
     }
     
     
+    // MARK: - UI
+    
     private let gridButton: UIButton = {
         let button = UIButton()
         button.clipsToBounds = true
         button.tintColor = .systemBlue
-        button.setBackgroundImage(UIImage(systemName: "square.grid.2x2"), for: .normal)
+        if #available(iOS 13.0, *) {
+            button.setBackgroundImage(UIImage(systemName: "square.grid.2x2"), for: .normal)
+        } else {
+            // Fallback on earlier versions
+        }
         return button
     }()
     
@@ -37,14 +48,20 @@ class ProfileTabsCollectionReusableView: UICollectionReusableView {
         let button = UIButton()
         button.clipsToBounds = true
         button.tintColor = .lightGray
-        button.setBackgroundImage(UIImage(systemName: "tag"), for: .normal)
+        if #available(iOS 13.0, *) {
+            button.setBackgroundImage(UIImage(systemName: "tag"), for: .normal)
+        } else {
+            // Fallback on earlier versions
+        }
         return button
     }()
     
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .systemBackground
+        backgroundColor = .white
         addSubview(gridButton)
         addSubview(taggedButton)
         gridButton.addTarget(self, action: #selector(didTapGridButton), for: .touchUpInside)
@@ -63,6 +80,9 @@ class ProfileTabsCollectionReusableView: UICollectionReusableView {
         gridButton.frame = CGRect(x: gridButtonX, y: Constants.padding, width: size, height: size)
         taggedButton.frame = CGRect(x: gridButtonX + (width/2), y: Constants.padding, width: size, height: size)
     }
+    
+    
+    // MARK: - Actions
     
     @objc private func didTapGridButton() {
         gridButton.tintColor = .systemBlue

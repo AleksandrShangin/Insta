@@ -19,7 +19,12 @@ struct HomeFeedRenderViewModel {
 
 class HomeViewController: UIViewController {
 
+    // MARK: - Properties
+    
     private var feedRenderModels = [HomeFeedRenderViewModel]()
+    
+    
+    // MARK: - UI
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -35,6 +40,8 @@ class HomeViewController: UIViewController {
         return tableView
     }()
     
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +60,9 @@ class HomeViewController: UIViewController {
         handleNotAuthenticated()
     }
     
+    
+    // MARK: - Private Methods
+    
     private func handleNotAuthenticated() {
         if Auth.auth().currentUser == nil {
             let loginVC = LoginViewController()
@@ -63,6 +73,9 @@ class HomeViewController: UIViewController {
 
 }
 
+
+
+// MARK: - Extension for TableView Methods
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     

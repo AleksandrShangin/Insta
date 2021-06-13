@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ColorCompatibility
 
 
 struct EditProfileFormModel {
@@ -16,29 +17,44 @@ struct EditProfileFormModel {
 
 
 
-final class EditProfileViewController: UIViewController, UITableViewDataSource {
+final class EditProfileViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    private var models = [[EditProfileFormModel]]()
+    
+    
+    // MARK: - UI
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(FormTableViewCell.self, forCellReuseIdentifier: FormTableViewCell.identifier)
         return tableView
     }()
     
-    private var models = [[EditProfileFormModel]]()
     
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = ColorCompatibility.systemBackground
+        // Table View
+        view.addSubview(tableView)
+        tableView.dataSource = self
         configureModels()
         tableView.tableHeaderView = createTableHeaderView()
-        tableView.dataSource = self
-        view.addSubview(tableView)
-        
-        view.backgroundColor = .systemBackground
+        // Bar Buttons
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSave))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(didTapCancel))
-    
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+    
+    
+    // MARK: - Private Methods
     
     private func configureModels() {
         // name, usename, website, bio
@@ -49,7 +65,6 @@ final class EditProfileViewController: UIViewController, UITableViewDataSource {
             section1.append(model)
         }
         models.append(section1)
-        
         // email, phone, gender
         let section2Labels = ["Email", "Phone", "Gender"]
         var section2 = [EditProfileFormModel]()
@@ -60,13 +75,6 @@ final class EditProfileViewController: UIViewController, UITableViewDataSource {
         models.append(section2)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
-    }
-    
-    // MARK: - TableView
-    
     private func createTableHeaderView() -> UIView {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: view.height/4).integral)
         let size = header.height/1.5
@@ -74,35 +82,24 @@ final class EditProfileViewController: UIViewController, UITableViewDataSource {
         header.addSubview(profilePhotoButton)
         profilePhotoButton.layer.masksToBounds = true
         profilePhotoButton.layer.cornerRadius = size/2.0
-        profilePhotoButton.tintColor = .label
-        profilePhotoButton.addTarget(self, action: #selector(didTapProfilePhotoButton), for: .touchUpInside)
-        profilePhotoButton.setBackgroundImage(UIImage(systemName: "person.circle"), for: .normal)
-        profilePhotoButton.layer.borderWidth = 1
-        profilePhotoButton.layer.borderColor = UIColor.secondarySystemBackground.cgColor
-        return header
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard section == 1 else {
-            return nil
+        if #available(iOS 13.0, *) {
+            profilePhotoButton.tintColor = .label
+        } else {
+            // Fallback on earlier versions
         }
-        return "Private Info"
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return models.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models[section].count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = models[indexPath.section][indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: FormTableViewCell.identifier, for: indexPath) as! FormTableViewCell
-        cell.configure(with: model)
-        cell.delegate = self
-        return cell
+        profilePhotoButton.addTarget(self, action: #selector(didTapProfilePhotoButton), for: .touchUpInside)
+        if #available(iOS 13.0, *) {
+            profilePhotoButton.setBackgroundImage(UIImage(systemName: "person.circle"), for: .normal)
+        } else {
+            // Fallback on earlier versions
+        }
+        profilePhotoButton.layer.borderWidth = 1
+        if #available(iOS 13.0, *) {
+            profilePhotoButton.layer.borderColor = UIColor.secondarySystemBackground.cgColor
+        } else {
+            // Fallback on earlier versions
+        }
+        return header
     }
     
     
@@ -135,6 +132,32 @@ final class EditProfileViewController: UIViewController, UITableViewDataSource {
         present(actionSheet, animated: true, completion: nil)
     }
     
+}
+
+
+extension EditProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard section == 1 else {
+            return nil
+        }
+        return "Private Info"
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return models.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return models[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = models[indexPath.section][indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: FormTableViewCell.identifier, for: indexPath) as! FormTableViewCell
+        cell.configure(with: model)
+        cell.delegate = self
+        return cell
+    }
 }
 
 

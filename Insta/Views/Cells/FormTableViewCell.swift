@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import ColorCompatibility
 
 
 protocol FormTableViewCellDelegate: AnyObject {
@@ -16,8 +16,9 @@ protocol FormTableViewCellDelegate: AnyObject {
 
 
 
-class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
+final class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
 
+    // MARK: - Properties
     
     static let identifier = "FormTableViewCell"
     
@@ -25,9 +26,12 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     public weak var delegate: FormTableViewCellDelegate?
     
+    
+    // MARK: - UI
+    
     private let formlabel: UILabel = {
         let label = UILabel()
-        label.textColor = .label
+        label.textColor = ColorCompatibility.label
         label.numberOfLines = 1
         return label
     }()
@@ -37,6 +41,9 @@ class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         field.returnKeyType = .done
         return field
     }()
+    
+    
+    // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

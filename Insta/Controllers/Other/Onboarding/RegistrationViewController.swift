@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import ColorCompatibility
+
+
 
 class RegistrationViewController: UIViewController {
 
     struct Constants {
         static let cornerRadius: CGFloat = 8.0
     }
+
+    // MARK: - UI
     
     private let usernameField: UITextField = {
         let field = UITextField()
@@ -23,9 +28,9 @@ class RegistrationViewController: UIViewController {
         field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = Constants.cornerRadius
-        field.backgroundColor = .secondarySystemBackground
+        field.backgroundColor = ColorCompatibility.secondarySystemBackground
         field.layer.borderWidth = 1.0
-        field.layer.borderColor = UIColor.secondaryLabel.cgColor
+        field.layer.borderColor = ColorCompatibility.secondaryLabel.cgColor
         return field
     }()
     
@@ -39,9 +44,9 @@ class RegistrationViewController: UIViewController {
         field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = Constants.cornerRadius
-        field.backgroundColor = .secondarySystemBackground
+        field.backgroundColor = ColorCompatibility.secondarySystemBackground
         field.layer.borderWidth = 1.0
-        field.layer.borderColor = UIColor.secondaryLabel.cgColor
+        field.layer.borderColor = ColorCompatibility.secondaryLabel.cgColor
         return field
     }()
     
@@ -56,9 +61,10 @@ class RegistrationViewController: UIViewController {
         field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = 8.0
-        field.backgroundColor = .secondarySystemBackground
+        field.backgroundColor = ColorCompatibility.secondarySystemBackground
         field.layer.borderWidth = 1.0
-        field.layer.borderColor = UIColor.secondaryLabel.cgColor
+        
+        field.layer.borderColor = ColorCompatibility.secondaryLabel.cgColor
         return field
     }()
     
@@ -73,17 +79,21 @@ class RegistrationViewController: UIViewController {
     }()
     
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
-        usernameField.delegate = self
-        emailField.delegate = self
-        passwordTextField.delegate = self
+        view.backgroundColor = ColorCompatibility.systemBackground
+        
         view.addSubview(usernameField)
         view.addSubview(emailField)
         view.addSubview(passwordTextField)
         view.addSubview(registerButton)
-        view.backgroundColor = .systemBackground
+        
+        usernameField.delegate = self
+        emailField.delegate = self
+        passwordTextField.delegate = self
+        registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
     }
 
     
@@ -95,6 +105,8 @@ class RegistrationViewController: UIViewController {
         registerButton.frame = CGRect(x: 20, y: passwordTextField.bottom+10, width: view.width-40, height: 52)
     }
     
+    
+    // MARK: - Actions
     
     @objc private func didTapRegisterButton() {
         usernameField.resignFirstResponder()
@@ -121,6 +133,9 @@ class RegistrationViewController: UIViewController {
     
 }
 
+
+
+// MARK: - Extension for TextField Delegate
 
 extension RegistrationViewController: UITextFieldDelegate {
     

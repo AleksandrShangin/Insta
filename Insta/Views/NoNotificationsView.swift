@@ -6,26 +6,37 @@
 //
 
 import UIKit
+import ColorCompatibility
 
-class NoNotificationsView: UIView {
 
+
+final class NoNotificationsView: UIView {
+
+    // MARK: - UI
+    
     private let label: UILabel = {
         let label = UILabel()
         label.text = "No Notifications Yet"
-        label.textColor = .secondaryLabel
+        label.textColor = ColorCompatibility.secondaryLabel
         label.numberOfLines = 1
         label.textAlignment = .center
-        
         return label
     }()
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = .secondaryLabel
+        imageView.tintColor = ColorCompatibility.secondaryLabel
         imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(systemName: "bell")
+        if #available(iOS 13.0, *) {
+            imageView.image = UIImage(systemName: "bell")
+        } else {
+            // Fallback on earlier versions
+        }
         return imageView
     }()
+    
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)

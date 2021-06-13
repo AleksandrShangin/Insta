@@ -8,6 +8,8 @@
 import UIKit
 import SafariServices
 import FirebaseAuth
+import ColorCompatibility
+
 
 
 class LoginViewController: UIViewController {
@@ -15,6 +17,8 @@ class LoginViewController: UIViewController {
     struct Constants {
         static let cornerRadius: CGFloat = 8.0
     }
+    
+    // MARK: - UI
     
     private let usernameEmailField: UITextField = {
         let field = UITextField()
@@ -26,9 +30,9 @@ class LoginViewController: UIViewController {
         field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = Constants.cornerRadius
-        field.backgroundColor = .secondarySystemBackground
+        field.backgroundColor = ColorCompatibility.secondarySystemBackground
         field.layer.borderWidth = 1.0
-        field.layer.borderColor = UIColor.secondaryLabel.cgColor
+        field.layer.borderColor = ColorCompatibility.secondaryLabel.cgColor
         return field
     }()
     
@@ -43,9 +47,9 @@ class LoginViewController: UIViewController {
         field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = 8.0
-        field.backgroundColor = .secondarySystemBackground
+        field.backgroundColor = ColorCompatibility.secondarySystemBackground
         field.layer.borderWidth = 1.0
-        field.layer.borderColor = UIColor.secondaryLabel.cgColor
+        field.layer.borderColor = ColorCompatibility.secondaryLabel.cgColor
         return field
     }()
     
@@ -62,14 +66,14 @@ class LoginViewController: UIViewController {
     private let termsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Terms of service", for: .normal)
-        button.setTitleColor(.secondaryLabel, for: .normal)
+        button.setTitleColor(ColorCompatibility.secondaryLabel, for: .normal)
         return button
     }()
     
     private let privacyButton: UIButton = {
         let button = UIButton()
         button.setTitle("Privacy Policy", for: .normal)
-        button.setTitleColor(.secondaryLabel, for: .normal)
+        button.setTitleColor( ColorCompatibility.secondaryLabel, for: .normal)
         return button
     }()
     
@@ -77,7 +81,9 @@ class LoginViewController: UIViewController {
         let button = UIButton()
         button.setTitle("New User? Create an Account", for: .normal)
         button.layer.masksToBounds = true
-        button.setTitleColor(.label, for: .normal)
+        
+            button.setTitleColor(ColorCompatibility.label, for: .normal)
+        
         return button
     }()
     
@@ -90,9 +96,12 @@ class LoginViewController: UIViewController {
     }()
     
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        view.backgroundColor = ColorCompatibility.systemBackground
+        
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         createAccountButton.addTarget(self, action: #selector(didTapCreateAccountButton), for: .touchUpInside)
         termsButton.addTarget(self, action: #selector(didTapTermsButton), for: .touchUpInside)
@@ -101,7 +110,6 @@ class LoginViewController: UIViewController {
         usernameEmailField.delegate = self
         passwordTextField.delegate = self
         addSubviews()
-        view.backgroundColor = .systemBackground
     }
     
     override func viewDidLayoutSubviews() {
@@ -121,7 +129,6 @@ class LoginViewController: UIViewController {
         guard headerView.subviews.count == 1 else {
             return
         }
-        
         guard let backgroundView = headerView.subviews.first else {
             return
         }
@@ -144,6 +151,8 @@ class LoginViewController: UIViewController {
         view.addSubview(headerView)
     }
     
+    
+    // MARK: - Actions
     
     @objc private func didTapLoginButton() {
         passwordTextField.resignFirstResponder()
@@ -200,6 +209,9 @@ class LoginViewController: UIViewController {
 
 }
 
+
+
+// MARK: - Extension for TextField Delegate
 
 extension LoginViewController: UITextFieldDelegate {
     

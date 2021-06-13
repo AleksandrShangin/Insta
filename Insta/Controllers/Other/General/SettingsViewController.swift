@@ -7,6 +7,9 @@
 
 import UIKit
 import SafariServices
+import ColorCompatibility
+
+
 
 struct SettingCellModel {
     let title: String
@@ -17,18 +20,27 @@ struct SettingCellModel {
 /// View Controller to show user settings
 final class SettingsViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    private var data = [[SettingCellModel]]()
+    
+    
+    // MARK: - UI
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         return tableView
     }()
     
-    private var data = [[SettingCellModel]]()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureModels()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = ColorCompatibility.systemBackground
+        // Table View
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
@@ -40,8 +52,9 @@ final class SettingsViewController: UIViewController {
     }
     
     
+    // MARK: - Private Methods
+    
     private func configureModels() {
-
         data.append([
             SettingCellModel(title: "Edit Profile", handler: { [weak self] in
                 self?.didTapEditProfile()
@@ -53,7 +66,6 @@ final class SettingsViewController: UIViewController {
                 self?.didTapSaveOriginalPosts()
             })
         ])
-        
         data.append([
             SettingCellModel(title: "Terms of Service", handler: { [weak self] in
                 self?.openURL(type: .terms)
@@ -65,7 +77,6 @@ final class SettingsViewController: UIViewController {
                 self?.openURL(type: .help)
             })
         ])
-
         data.append([
             SettingCellModel(title: "Log Out", handler: { [weak self] in
                 self?.didTapLogOut()
@@ -155,7 +166,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

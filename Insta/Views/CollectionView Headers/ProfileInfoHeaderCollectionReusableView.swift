@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import ColorCompatibility
+
+
 
 protocol ProfileInfoHeaderCollectionReusableViewDelegate: AnyObject {
     func profileHeaderDidTapPostsButton(_ header: ProfileInfoHeaderCollectionReusableView)
@@ -15,11 +18,18 @@ protocol ProfileInfoHeaderCollectionReusableViewDelegate: AnyObject {
 }
 
 
+
 final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
+    
+    
+    // MARK: - Properties
     
     static let identifier = "ProfileInfoHeaderCollectionReusableView"
     
     public weak var delegate: ProfileInfoHeaderCollectionReusableViewDelegate?
+    
+    
+    // MARK: - UI
     
     private let profilePhotoImageView: UIImageView = {
         let imageView = UIImageView()
@@ -31,39 +41,39 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
     private let postsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Posts", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .secondarySystemBackground
+        button.setTitleColor(ColorCompatibility.label, for: .normal)
+        button.backgroundColor = ColorCompatibility.secondarySystemBackground
         return button
     }()
     
     private let followingButton: UIButton = {
         let button = UIButton()
         button.setTitle("Following", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .secondarySystemBackground
+        button.setTitleColor(ColorCompatibility.label, for: .normal)
+        button.backgroundColor = ColorCompatibility.secondarySystemBackground
         return button
     }()
     
     private let followersButton: UIButton = {
         let button = UIButton()
         button.setTitle("Followers", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .secondarySystemBackground
+        button.setTitleColor(ColorCompatibility.label, for: .normal)
+        button.backgroundColor = ColorCompatibility.secondarySystemBackground
         return button
     }()
     
     private let editProfileButton: UIButton = {
         let button = UIButton()
         button.setTitle("Edit Your Profile", for: .normal)
-        button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .secondarySystemBackground
+        button.setTitleColor(ColorCompatibility.label, for: .normal)
+        button.backgroundColor = ColorCompatibility.secondarySystemBackground
         return button
     }()
     
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Joe Smith"
-        label.textColor = .label
+        label.textColor = ColorCompatibility.label
         label.numberOfLines = 1
         return label
     }()
@@ -71,10 +81,11 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
     private let bioLabel: UILabel = {
         let label = UILabel()
         label.text = "This is the first account!"
-        label.textColor = .label
+        label.textColor = ColorCompatibility.label
         label.numberOfLines = 0 // line wrap
         return label
     }()
+    
     
     // MARK: - Init
     
@@ -82,7 +93,7 @@ final class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
         super.init(frame: frame)
         addSubviews()
         addButtonActions()
-        backgroundColor = .systemBackground
+        backgroundColor = ColorCompatibility.systemBackground
         clipsToBounds = true
         
     }

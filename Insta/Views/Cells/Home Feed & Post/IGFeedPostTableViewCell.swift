@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import ColorCompatibility
+
 
 final class IGFeedPostTableViewCell: UITableViewCell {
 
@@ -14,7 +16,7 @@ final class IGFeedPostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .secondarySystemBackground
+        contentView.backgroundColor = ColorCompatibility.secondarySystemBackground
     }
     
     required init?(coder: NSCoder) {

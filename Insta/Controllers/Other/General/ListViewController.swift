@@ -6,16 +6,25 @@
 //
 
 import UIKit
+import ColorCompatibility
 
-class ListViewController: UIViewController {
+
+
+final class ListViewController: UIViewController {
+    
+    // MARK: - Properties
     
     private let data: [UserRelationship]
+    
+    
+    // MARK: - UI
     
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UserFollowTableViewCell.self, forCellReuseIdentifier: UserFollowTableViewCell.identifier)
         return tableView
     }()
+    
     
     // MARK: - Init
     
@@ -28,14 +37,16 @@ class ListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = ColorCompatibility.systemBackground
     }
-    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -46,7 +57,8 @@ class ListViewController: UIViewController {
 }
 
 
-extension ListViewController: UITableViewDataSource {
+
+extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         data.count
@@ -59,22 +71,19 @@ extension ListViewController: UITableViewDataSource {
         return cell
     }
     
-}
-
-
-extension ListViewController: UITableViewDelegate {
-        
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // Go to profile of selected cell
         let model = data[indexPath.row]
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
-    }
-    
 }
+
+
 
 extension ListViewController: UserFollowTableViewCellDelegate {
     func didTapFollowUnfollowButton(model: UserRelationship) {

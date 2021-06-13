@@ -9,6 +9,7 @@ target 'Insta' do
 
   pod 'Appirater'
   pod 'SDWebImage'
+  pod 'ColorCompatibility'
 
   # Firebase
   pod 'Firebase/Core'

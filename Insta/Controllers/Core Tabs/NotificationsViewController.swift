@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import ColorCompatibility
+
+
 
 struct UserNotification {
     let type: UserNotificationType
@@ -19,8 +22,18 @@ enum UserNotificationType {
 }
 
 
-final class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+
+final class NotificationsViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private var models = [UserNotification]()
+    
+    
+    // MARK: - UI
+    
+    private lazy var noNotificationsView = NoNotificationsView()
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -31,33 +44,27 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
     }()
     
     private let spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
+        let spinner = UIActivityIndicatorView(style: .gray)
         spinner.hidesWhenStopped = true
-        spinner.tintColor = .label
+        spinner.tintColor = ColorCompatibility.label
         return spinner
     }()
     
-    private lazy var noNotificationsView = NoNotificationsView()
-    
-    
-    private var models = [UserNotification]()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fetchNotifications()
-        
         navigationItem.title = "Notifications"
-        
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = ColorCompatibility.systemBackground
         view.addSubview(spinner)
 //        spinner.startAnimating()
+        // Table View
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-
+        
+        fetchNotifications()
     }
     
     override func viewDidLayoutSubviews() {
@@ -67,6 +74,8 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
         spinner.center = view.center
     }
     
+    
+    // MARK: - Private Methods
     
     private func fetchNotifications() {
         for x in 0...100 {
@@ -101,6 +110,13 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
         noNotificationsView.frame = CGRect(x: 0, y: 0, width: view.width/2, height: view.width/4)
         noNotificationsView.center = view.center
     }
+    
+    
+}
+
+
+
+extension NotificationsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ColorCompatibility
 
 
 protocol NotificationFollowEventTableViewCellDelegate: AnyObject {
@@ -13,16 +14,21 @@ protocol NotificationFollowEventTableViewCellDelegate: AnyObject {
 }
 
 
-class NotificationFollowEventTableViewCell: UITableViewCell {
+final class NotificationFollowEventTableViewCell: UITableViewCell {
+    
+    // MARK: - Properties
+    
     static let identifier = "NotificationFollowEventTableViewCell"
     
     weak var delegate: NotificationFollowEventTableViewCellDelegate?
     
     private var model: UserNotification?
     
+    
+    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .tertiarySystemBackground
+        imageView.backgroundColor = ColorCompatibility.tertiarySystemBackground
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -30,7 +36,7 @@ class NotificationFollowEventTableViewCell: UITableViewCell {
     
     private let label: UILabel = {
         let label = UILabel()
-        label.textColor = .label
+        label.textColor = ColorCompatibility.label
         label.numberOfLines = 0
         label.text = "@Arnold followed you."
         return label
@@ -84,7 +90,11 @@ class NotificationFollowEventTableViewCell: UITableViewCell {
                 followButton.setTitle("Follow", for: .normal)
                 followButton.setTitleColor(.white, for: .normal)
                 followButton.layer.borderWidth = 0
-                followButton.backgroundColor = .link
+                if #available(iOS 13.0, *) {
+                    followButton.backgroundColor = .link
+                } else {
+                    // Fallback on earlier versions
+                }
             }
             
         }
@@ -94,9 +104,17 @@ class NotificationFollowEventTableViewCell: UITableViewCell {
     
     private func configureForFollow() {
         followButton.setTitle("Unfollow", for: .normal)
-        followButton.setTitleColor(.label, for: .normal)
+        if #available(iOS 13.0, *) {
+            followButton.setTitleColor(.label, for: .normal)
+        } else {
+            // Fallback on earlier versions
+        }
         followButton.layer.borderWidth = 1
-        followButton.layer.borderColor = UIColor.secondaryLabel.cgColor
+        if #available(iOS 13.0, *) {
+            followButton.layer.borderColor = UIColor.secondaryLabel.cgColor
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     override func prepareForReuse() {
