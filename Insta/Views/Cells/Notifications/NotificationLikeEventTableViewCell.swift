@@ -105,7 +105,7 @@ final class NotificationLikeEventTableViewCell: UITableViewCell {
     }
 
     
-    // MARK: - Init
+    // MARK: - Actions
     
     @objc private func didTapPostButton() {
         guard let model = model else { return }

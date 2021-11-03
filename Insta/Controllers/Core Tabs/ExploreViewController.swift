@@ -6,32 +6,27 @@
 //
 
 import UIKit
+import ColorCompatibility
 
-class ExploreViewController: UIViewController {
 
+final class ExploreViewController: UIViewController {
+
+    // MARK: - UI
     
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        if #available(iOS 13.0, *) {
-            searchBar.backgroundColor = .secondarySystemBackground
-        } else {
-            // Fallback on earlier versions
-        }
-        
+        searchBar.backgroundColor = ColorCompatibility.secondarySystemBackground
         return searchBar
     }()
     
     private var collectionView: UICollectionView?
     
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .systemBackground
-        } else {
-            // Fallback on earlier versions
-        }
+        view.backgroundColor = ColorCompatibility.systemBackground
+        
         navigationController?.navigationBar.topItem?.titleView = searchBar
         
         let layout = UICollectionViewFlowLayout()

@@ -6,26 +6,10 @@
 //
 
 import UIKit
-import ColorCompatibility
-
-
 
 protocol UserFollowTableViewCellDelegate: AnyObject {
     func didTapFollowUnfollowButton(model: UserRelationship)
 }
-
-
-enum FollowState {
-    case following // indicates the current user is following the other user
-    case not_following // indicates the current user is NOT following the other user
-}
-
-struct UserRelationship {
-    let username: String
-    let name: String
-    let type: FollowState
-}
-
 
 final class UserFollowTableViewCell: UITableViewCell {
 
@@ -36,15 +20,14 @@ final class UserFollowTableViewCell: UITableViewCell {
     weak var delegate: UserFollowTableViewCellDelegate?
     
     private var model: UserRelationship?
-    
-    
+        
     // MARK: - UI
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
-        imageView.backgroundColor = ColorCompatibility.secondarySystemBackground
+        imageView.backgroundColor = .secondarySystemBackground
         return imageView
     }()
     
@@ -61,13 +44,13 @@ final class UserFollowTableViewCell: UITableViewCell {
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 16, weight: .regular)
         label.text = "@joe"
-        label.textColor = ColorCompatibility.secondaryLabel
+        label.textColor = .secondaryLabel
         return label
     }()
     
     private let followButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = ColorCompatibility.link
+        button.backgroundColor = .link
         return button
     }()
     
@@ -134,7 +117,6 @@ final class UserFollowTableViewCell: UITableViewCell {
         delegate?.didTapFollowUnfollowButton(model: model)
     }
     
-    
     public func configure(with model: UserRelationship) {
         self.model = model
         nameLabel.text = model.name
@@ -142,17 +124,16 @@ final class UserFollowTableViewCell: UITableViewCell {
         switch model.type {
         case .following:
             followButton.setTitle("Unfollow", for: .normal)
-            followButton.setTitleColor(ColorCompatibility.label, for: .normal)
-            followButton.backgroundColor = ColorCompatibility.systemBackground
+            followButton.setTitleColor(.label, for: .normal)
+            followButton.backgroundColor = .systemBackground
             followButton.layer.borderWidth = 1
-            followButton.layer.borderColor = ColorCompatibility.label.cgColor
+            followButton.layer.borderColor = UIColor.label.cgColor
         case .not_following:
             followButton.setTitle("Follow", for: .normal)
             followButton.setTitleColor(.white, for: .normal)
-            followButton.backgroundColor = ColorCompatibility.link
+            followButton.backgroundColor = .link
             followButton.layer.borderWidth = 0
         }
     }
-    
     
 }

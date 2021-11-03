@@ -6,15 +6,10 @@
 //
 
 import UIKit
-import ColorCompatibility
-
 
 protocol FormTableViewCellDelegate: AnyObject {
     func formTableViewCell(cell: FormTableViewCell, didUpdateField updatedModel: EditProfileFormModel)
 }
-
-
-
 
 final class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
 
@@ -25,13 +20,12 @@ final class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
     private var model: EditProfileFormModel?
     
     public weak var delegate: FormTableViewCellDelegate?
-    
-    
+        
     // MARK: - UI
     
     private let formlabel: UILabel = {
         let label = UILabel()
-        label.textColor = ColorCompatibility.label
+        label.textColor = .label
         label.numberOfLines = 1
         return label
     }()
@@ -41,7 +35,6 @@ final class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         field.returnKeyType = .done
         return field
     }()
-    
     
     // MARK: - Init
     

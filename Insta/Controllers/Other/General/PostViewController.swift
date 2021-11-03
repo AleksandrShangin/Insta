@@ -21,20 +21,6 @@ import UIKit
 
 
 
-/// States of a rendered cell
-enum PostRenderType {
-    case header(provider: User)
-    case primaryContent(content: UserPost) // post
-    case actions(provider: String) // like, comment, share
-    case comments(comments: [PostComment])
-}
-
-/// Model of rendered post
-struct PostRenderViewModel {
-    let renderType: PostRenderType
-}
-
-
 
 final class PostViewController: UIViewController {
 
@@ -74,6 +60,8 @@ final class PostViewController: UIViewController {
     }
     
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -87,6 +75,9 @@ final class PostViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+    
+    
+    // MARK: - Private Methods
     
     private func configureModels() {
         guard let userPostModel = self.model else { return }
@@ -109,6 +100,7 @@ final class PostViewController: UIViewController {
     }
 
 }
+
 
 
 // MARK: - TableView Extension

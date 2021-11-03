@@ -1,40 +1,11 @@
 //
-//  Models.swift
+//  UserPost.swift
 //  Insta
 //
-//  Created by Alex on 4/5/21.
+//  Created by Alex on 6/21/21.
 //
 
 import Foundation
-
-
-enum Gender {
-    case male, female, other
-}
-
-struct User {
-    let username: String
-    let bio: String
-    let name: (first: String, last: String)
-    let profilePhoto: URL
-    let birthDate: Date
-    let gender: Gender
-    let counts: UserCount
-    let joinDate: Date
-}
-
-
-struct UserCount {
-    let followers: Int
-    let following: Int
-    let posts: Int
-}
-
-
-public enum UserPostType: String {
-    case photo = "Photo"
-    case video = "Video"
-}
 
 /// Represents a user post
 public struct UserPost {
@@ -48,6 +19,11 @@ public struct UserPost {
     let postedDate: Date
     let taggedUsers: [User]
     let owner: User
+}
+
+public enum UserPostType: String {
+    case photo = "Photo"
+    case video = "Video"
 }
 
 struct PostLike {

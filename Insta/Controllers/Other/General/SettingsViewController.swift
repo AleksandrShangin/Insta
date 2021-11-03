@@ -7,15 +7,11 @@
 
 import UIKit
 import SafariServices
-import ColorCompatibility
-
-
 
 struct SettingCellModel {
     let title: String
     let handler: () -> Void
 }
-
 
 /// View Controller to show user settings
 final class SettingsViewController: UIViewController {
@@ -23,8 +19,7 @@ final class SettingsViewController: UIViewController {
     // MARK: - Properties
     
     private var data = [[SettingCellModel]]()
-    
-    
+        
     // MARK: - UI
     
     private let tableView: UITableView = {
@@ -33,13 +28,12 @@ final class SettingsViewController: UIViewController {
         return tableView
     }()
     
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureModels()
-        view.backgroundColor = ColorCompatibility.systemBackground
+        view.backgroundColor = .systemBackground
         // Table View
         view.addSubview(tableView)
         tableView.delegate = self
@@ -50,7 +44,6 @@ final class SettingsViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
     
     // MARK: - Private Methods
     
@@ -149,6 +142,7 @@ final class SettingsViewController: UIViewController {
     
 }
 
+// MARK: - TableView Methods
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     

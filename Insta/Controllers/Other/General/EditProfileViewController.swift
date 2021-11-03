@@ -9,13 +9,6 @@ import UIKit
 import ColorCompatibility
 
 
-struct EditProfileFormModel {
-    let label: String
-    let placeholder: String
-    var value: String?
-}
-
-
 
 final class EditProfileViewController: UIViewController {
 
@@ -82,11 +75,9 @@ final class EditProfileViewController: UIViewController {
         header.addSubview(profilePhotoButton)
         profilePhotoButton.layer.masksToBounds = true
         profilePhotoButton.layer.cornerRadius = size/2.0
-        if #available(iOS 13.0, *) {
-            profilePhotoButton.tintColor = .label
-        } else {
-            // Fallback on earlier versions
-        }
+        
+        profilePhotoButton.tintColor = ColorCompatibility.label
+        
         profilePhotoButton.addTarget(self, action: #selector(didTapProfilePhotoButton), for: .touchUpInside)
         if #available(iOS 13.0, *) {
             profilePhotoButton.setBackgroundImage(UIImage(systemName: "person.circle"), for: .normal)
@@ -94,11 +85,7 @@ final class EditProfileViewController: UIViewController {
             // Fallback on earlier versions
         }
         profilePhotoButton.layer.borderWidth = 1
-        if #available(iOS 13.0, *) {
-            profilePhotoButton.layer.borderColor = UIColor.secondarySystemBackground.cgColor
-        } else {
-            // Fallback on earlier versions
-        }
+        profilePhotoButton.layer.borderColor = ColorCompatibility.secondarySystemBackground.cgColor
         return header
     }
     
@@ -135,6 +122,8 @@ final class EditProfileViewController: UIViewController {
 }
 
 
+// MARK: - TableView Methods
+
 extension EditProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard section == 1 else {
@@ -160,6 +149,8 @@ extension EditProfileViewController: UITableViewDataSource {
     }
 }
 
+
+// MARK: - Extension for FormTableViewCellDelegate
 
 extension EditProfileViewController: FormTableViewCellDelegate {
     

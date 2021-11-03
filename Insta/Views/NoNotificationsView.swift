@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import ColorCompatibility
-
-
 
 final class NoNotificationsView: UIView {
 
@@ -17,7 +14,7 @@ final class NoNotificationsView: UIView {
     private let label: UILabel = {
         let label = UILabel()
         label.text = "No Notifications Yet"
-        label.textColor = ColorCompatibility.secondaryLabel
+        label.textColor = .secondaryLabel
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -25,16 +22,11 @@ final class NoNotificationsView: UIView {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.tintColor = ColorCompatibility.secondaryLabel
+        imageView.tintColor = .secondaryLabel
         imageView.contentMode = .scaleAspectFit
-        if #available(iOS 13.0, *) {
-            imageView.image = UIImage(systemName: "bell")
-        } else {
-            // Fallback on earlier versions
-        }
+        imageView.image = UIImage(systemName: "bell")
         return imageView
     }()
-    
     
     // MARK: - Init
     
@@ -53,12 +45,5 @@ final class NoNotificationsView: UIView {
         imageView.frame = CGRect(x: (width-50)/2, y: 0, width: 50, height: 50).integral
         label.frame = CGRect(x: 0, y: imageView.bottom, width: width, height: height-50).integral
     }
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
+    
 }

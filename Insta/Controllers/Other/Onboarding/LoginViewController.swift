@@ -8,11 +8,8 @@
 import UIKit
 import SafariServices
 import FirebaseAuth
-import ColorCompatibility
 
-
-
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
 
     struct Constants {
         static let cornerRadius: CGFloat = 8.0
@@ -30,9 +27,9 @@ class LoginViewController: UIViewController {
         field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = Constants.cornerRadius
-        field.backgroundColor = ColorCompatibility.secondarySystemBackground
+        field.backgroundColor = .secondarySystemBackground
         field.layer.borderWidth = 1.0
-        field.layer.borderColor = ColorCompatibility.secondaryLabel.cgColor
+        field.layer.borderColor = UIColor.secondaryLabel.cgColor
         return field
     }()
     
@@ -47,9 +44,9 @@ class LoginViewController: UIViewController {
         field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = 8.0
-        field.backgroundColor = ColorCompatibility.secondarySystemBackground
+        field.backgroundColor = .secondarySystemBackground
         field.layer.borderWidth = 1.0
-        field.layer.borderColor = ColorCompatibility.secondaryLabel.cgColor
+        field.layer.borderColor = UIColor.secondaryLabel.cgColor
         return field
     }()
     
@@ -66,14 +63,14 @@ class LoginViewController: UIViewController {
     private let termsButton: UIButton = {
         let button = UIButton()
         button.setTitle("Terms of service", for: .normal)
-        button.setTitleColor(ColorCompatibility.secondaryLabel, for: .normal)
+        button.setTitleColor(.secondaryLabel, for: .normal)
         return button
     }()
     
     private let privacyButton: UIButton = {
         let button = UIButton()
         button.setTitle("Privacy Policy", for: .normal)
-        button.setTitleColor( ColorCompatibility.secondaryLabel, for: .normal)
+        button.setTitleColor(.secondaryLabel, for: .normal)
         return button
     }()
     
@@ -81,9 +78,7 @@ class LoginViewController: UIViewController {
         let button = UIButton()
         button.setTitle("New User? Create an Account", for: .normal)
         button.layer.masksToBounds = true
-        
-            button.setTitleColor(ColorCompatibility.label, for: .normal)
-        
+        button.setTitleColor(.label, for: .normal)
         return button
     }()
     
@@ -95,12 +90,11 @@ class LoginViewController: UIViewController {
         return header
     }()
     
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = ColorCompatibility.systemBackground
+        view.backgroundColor = .systemBackground
         
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         createAccountButton.addTarget(self, action: #selector(didTapCreateAccountButton), for: .touchUpInside)
@@ -140,7 +134,6 @@ class LoginViewController: UIViewController {
         imageView.frame = CGRect(x: headerView.width/4, y: view.safeAreaInsets.top, width: headerView.width/2.0, height: headerView.height - view.safeAreaInsets.top)
     }
     
-
     private func addSubviews() {
         view.addSubview(usernameEmailField)
         view.addSubview(passwordTextField)
@@ -150,8 +143,7 @@ class LoginViewController: UIViewController {
         view.addSubview(createAccountButton)
         view.addSubview(headerView)
     }
-    
-    
+        
     // MARK: - Actions
     
     @objc private func didTapLoginButton() {
@@ -209,8 +201,6 @@ class LoginViewController: UIViewController {
 
 }
 
-
-
 // MARK: - Extension for TextField Delegate
 
 extension LoginViewController: UITextFieldDelegate {
@@ -223,4 +213,5 @@ extension LoginViewController: UITextFieldDelegate {
         }
         return true
     }
+    
 }

@@ -7,17 +7,13 @@
 
 import UIKit
 import SDWebImage
-import ColorCompatibility
-
-
 
 final class PhotoCollectionViewCell: UICollectionViewCell {
         
     // MARK: - Properties
     
     static let identifier = "PhotoCollectionViewCell"
-    
-    
+        
     // MARK: - UI
     
     private let photoImageView: UIImageView = {
@@ -27,12 +23,11 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = ColorCompatibility.secondarySystemBackground
+        contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubview(photoImageView)
         contentView.clipsToBounds = true
         accessibilityLabel = "User post image"

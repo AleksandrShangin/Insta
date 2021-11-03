@@ -10,20 +10,6 @@ import ColorCompatibility
 
 
 
-struct UserNotification {
-    let type: UserNotificationType
-    let user: User
-    let text: String
-}
-
-enum UserNotificationType {
-    case like(post: UserPost)
-    case follow(state: FollowState)
-}
-
-
-
-
 final class NotificationsViewController: UIViewController {
     
     // MARK: - Properties

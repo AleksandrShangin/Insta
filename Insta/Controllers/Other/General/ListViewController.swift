@@ -6,17 +6,13 @@
 //
 
 import UIKit
-import ColorCompatibility
-
-
 
 final class ListViewController: UIViewController {
     
     // MARK: - Properties
     
     private let data: [UserRelationship]
-    
-    
+        
     // MARK: - UI
     
     private let tableView: UITableView = {
@@ -24,7 +20,6 @@ final class ListViewController: UIViewController {
         tableView.register(UserFollowTableViewCell.self, forCellReuseIdentifier: UserFollowTableViewCell.identifier)
         return tableView
     }()
-    
     
     // MARK: - Init
     
@@ -37,7 +32,6 @@ final class ListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -45,7 +39,7 @@ final class ListViewController: UIViewController {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        view.backgroundColor = ColorCompatibility.systemBackground
+        view.backgroundColor = .systemBackground
     }
     
     override func viewDidLayoutSubviews() {

@@ -1,25 +1,23 @@
-# Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '13.0'
+
+use_frameworks!
+
+def network_pods
+    pod 'Appirater'
+    pod 'SDWebImage'
+    pod 'ColorCompatibility'
+end
+
+def firebase_pods
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Firebase/Storage'
+    pod 'Firebase/Analytics' 
+    pod 'Firebase/Crashlytics'
+end    
 
 target 'Insta' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for Insta
-
-  pod 'Appirater'
-  pod 'SDWebImage'
-  pod 'ColorCompatibility'
-
-  # Firebase
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Database'
-  pod 'Firebase/Storage'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Crashlytics'
-    
-
-
-
+    network_pods   
+    firebase_pods
 end
