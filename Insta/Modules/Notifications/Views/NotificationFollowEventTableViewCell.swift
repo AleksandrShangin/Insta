@@ -6,13 +6,10 @@
 //
 
 import UIKit
-import ColorCompatibility
-
 
 protocol NotificationFollowEventTableViewCellDelegate: AnyObject {
     func didTapFollowUnfollowButton(model: UserNotification)
 }
-
 
 final class NotificationFollowEventTableViewCell: UITableViewCell {
     
@@ -25,10 +22,9 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
     private var model: UserNotification?
     
     
-    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = ColorCompatibility.tertiarySystemBackground
+        imageView.backgroundColor = .tertiarySystemBackground
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -36,7 +32,7 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
     
     private let label: UILabel = {
         let label = UILabel()
-        label.textColor = ColorCompatibility.label
+        label.textColor = .label
         label.numberOfLines = 0
         label.text = "@Arnold followed you."
         return label
@@ -49,6 +45,8 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
         return button
     }()
     
+    // MARK: - Init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.clipsToBounds = true
@@ -57,13 +55,62 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
         contentView.addSubview(followButton)
         followButton.addTarget(self, action: #selector(didTapFollowButton), for: .touchUpInside)
         configureForFollow()
-        selectionStyle = .none
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupConstraints()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        followButton.setTitle(nil, for: .normal)
+        followButton.backgroundColor = nil
+        followButton.layer.borderWidth = 0
+        label.text = nil
+        profileImageView.image = nil
+    }
+    
+    //MARK: - Setup
+    
+    private func setupSubviews() {
+        contentView.clipsToBounds = true
+        selectionStyle = .none
+    }
+    
+    private func setupConstraints() {
+        // photo, text, follow button
+        profileImageView.frame = CGRect(
+            x: 3,
+            y: 3,
+            width: contentView.height-6,
+            height: contentView.height-6
+        )
+        profileImageView.layer.cornerRadius = profileImageView.height/2
+        
+        let size: CGFloat = 100
+        let buttonHeight: CGFloat = 40
+        followButton.frame = CGRect(
+            x: contentView.width-5-size,
+            y: (contentView.height-buttonHeight)/2,
+            width: size,
+            height: buttonHeight
+        )
+        
+        label.frame = CGRect(
+            x: profileImageView.right+5,
+            y: 0,
+            width: contentView.width-size-profileImageView.width-16,
+            height: contentView.height
+        )
+    }
+    
+    // MARK: - Actions
     
     @objc private func didTapFollowButton() {
         guard let model = model else {
@@ -72,6 +119,7 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
         delegate?.didTapFollowUnfollowButton(model: model)
     }
     
+    // MARK: - Configure
     
     public func configure(with model: UserNotification) {
         self.model = model
@@ -104,45 +152,9 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
     
     private func configureForFollow() {
         followButton.setTitle("Unfollow", for: .normal)
-        if #available(iOS 13.0, *) {
-            followButton.setTitleColor(.label, for: .normal)
-        } else {
-            // Fallback on earlier versions
-        }
+        followButton.setTitleColor(.label, for: .normal)
         followButton.layer.borderWidth = 1
-        if #available(iOS 13.0, *) {
-            followButton.layer.borderColor = UIColor.secondaryLabel.cgColor
-        } else {
-            // Fallback on earlier versions
-        }
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        followButton.setTitle(nil, for: .normal)
-        followButton.backgroundColor = nil
-        followButton.layer.borderWidth = 0
-        label.text = nil
-        profileImageView.image = nil
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        // photo, text, follow button
-        profileImageView.frame = CGRect(x: 3, y: 3, width: contentView.height-6, height: contentView.height-6)
-        profileImageView.layer.cornerRadius = profileImageView.height/2
-        
-        let size: CGFloat = 100
-        let buttonHeight: CGFloat = 40
-        followButton.frame = CGRect(x: contentView.width-5-size,
-                                    y: (contentView.height-buttonHeight)/2,
-                                    width: size,
-                                    height: buttonHeight)
-        
-        label.frame = CGRect(x: profileImageView.right+5,
-                             y: 0,
-                             width: contentView.width-size-profileImageView.width-16,
-                             height: contentView.height)
+        followButton.layer.borderColor = UIColor.secondaryLabel.cgColor
     }
 
 }

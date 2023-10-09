@@ -17,7 +17,7 @@ class TabBarViewController: UITabBarController {
         let homeVC = HomeViewController()
         let exploreVC = ExploreViewController()
         let cameraVC = CameraViewController()
-        let notificationsVC = NotificationsViewController()
+        let notificationsVC = NotificationsFactory().build()
         let profileVC = ProfileFactory().build()
         
         let nav1 = UINavigationController(rootViewController: homeVC)
