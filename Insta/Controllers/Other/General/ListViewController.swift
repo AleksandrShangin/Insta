@@ -46,7 +46,6 @@ final class ListViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
 
 }
 
@@ -81,6 +80,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ListViewController: UserFollowTableViewCellDelegate {
     func didTapFollowUnfollowButton(model: UserRelationship) {
+        print("Follow button tapped :: status \(model.type)")
         switch model.type {
         case .following:
             // perform firebase update to unfollow
@@ -90,8 +90,6 @@ extension ListViewController: UserFollowTableViewCellDelegate {
             break
         }
     }
-    
-    
 }
 
 

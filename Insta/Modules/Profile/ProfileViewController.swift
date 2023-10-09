@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import ColorCompatibility
-
 
 /// Profile view controller
 final class ProfileViewController: UIViewController {
@@ -16,74 +14,69 @@ final class ProfileViewController: UIViewController {
     
     private var userPosts = [UserPost]()
     
+    private weak var collectionView: UICollectionView!
     
-    // MARK: - UI
+    private let viewModel: ProfileViewModel
+    private var router: ProfileRouter!
     
-    private var collectionView: UICollectionView?
+    // MARK: - Init
     
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
     
+    override func loadView() {
+        let view = ProfileView()
+        self.view = view
+        self.collectionView = view.collectionView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = ColorCompatibility.systemBackground
+        configureRouter()
         configureNavigationBar()
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 1
-        layout.minimumInteritemSpacing = 1
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 1)
-        let size = (view.width - 4) / 3
-        layout.itemSize = CGSize(width: size, height: size)
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        // Cell
-        collectionView?.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
-        // Headers
-        collectionView?.register(ProfileInfoHeaderCollectionReusableView.self,
-                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                 withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier)
-        collectionView?.register(ProfileTabsCollectionReusableView.self,
-                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                 withReuseIdentifier: ProfileTabsCollectionReusableView.identifier)
-        
-        collectionView?.delegate = self
-        collectionView?.dataSource = self
-        guard let collectionView = collectionView else {
-            return
-        }
-        view.addSubview(collectionView)
+        configureViews()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView?.frame = view.bounds
+    //MARK: - Configure
+    
+    private func configureRouter() {
+        router = ProfileRouter(viewController: self)
     }
-    
-    
-    // MARK: - Private Methods
     
     private func configureNavigationBar() {
-        if #available(iOS 13.0, *) {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(didTapSettings))
-        } else {
-            // Fallback on earlier versions
-        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "gear"),
+            style: .done,
+            target: self,
+            action: #selector(didTapSettings)
+        )
+    }
+    
+    private func configureViews() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 
-    @objc private func didTapSettings() {
-        let vc = SettingsViewController()
-        vc.title = "Title"
-        navigationController?.pushViewController(vc, animated: true)
+    //MARK: - Actions
+    
+    @objc
+    private func didTapSettings() {
+        self.router.showSettings()
     }
-     
     
 }
 
+//MARK: - Extension for UICollectionViewDataSource
 
-
-extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+extension ProfileViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
@@ -104,15 +97,16 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         cell.configure(debug: "test")
         return cell
     }
-    
+}
+
+//MARK: - Extension for UICollectionViewDelegate
+
+extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        // get the model and open post controller
+//        // get the model and open post controller
 //        let model = userPosts[indexPath.row]
-        let vc = PostViewController(model: nil)
-        vc.title = "Post"
-        vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
+        self.router.showPost()
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -141,9 +135,16 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         // Size of section tabs
         return CGSize(width: collectionView.width, height: 50)
-        
     }
     
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let size = (view.width - 4) / 3
+        return CGSize(width: size, height: size)
+    }
     
 }
 
@@ -157,36 +158,16 @@ extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate
     }
     
     func profileHeaderDidTapFollowersButton(_ header: ProfileInfoHeaderCollectionReusableView) {
-        var mockData = [UserRelationship]()
-        for x in 0...10 {
-            mockData.append(UserRelationship(username: "@joe", name: "Joe", type: x % 2 == 0 ? .following : .not_following))
-        }
-        let vc = ListViewController(data: mockData)
-        vc.title = "Followers"
-        vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
+        self.router.showFollowers()
     }
     
     func profileHeaderDidTapFollowingButton(_ header: ProfileInfoHeaderCollectionReusableView) {
-        var mockData = [UserRelationship]()
-        for x in 0...10 {
-            mockData.append(UserRelationship(username: "@joe", name: "Joe", type: x % 2 == 0 ? .following : .not_following))
-        }
-        let vc = ListViewController(data: mockData)
-        vc.title = "Following"
-        vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
+        self.router.showFollowing()
     }
     
     func profileHeaderDidTapEditProfileButton(_ header: ProfileInfoHeaderCollectionReusableView) {
-        let vc = EditProfileViewController()
-        vc.title = "Edit Profile"
-        vc.navigationItem.largeTitleDisplayMode = .never
-        present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+        self.router.showEditProfile()
     }
-    
-    
-        
 }
 
 
@@ -200,7 +181,6 @@ extension ProfileViewController: ProfileTabsCollectionReusableViewDelegate {
         // Reload collection view with data
         
     }
-    
 }
 
 

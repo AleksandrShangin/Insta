@@ -48,6 +48,8 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         photoImageView.image = nil
     }
     
+    // MARK: - Configure
+    
     public func configure(debug imageName: String) {
         photoImageView.image = UIImage(named: imageName)
     }

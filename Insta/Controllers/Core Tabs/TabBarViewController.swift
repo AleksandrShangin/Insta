@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
@@ -20,7 +18,7 @@ class TabBarViewController: UITabBarController {
         let exploreVC = ExploreViewController()
         let cameraVC = CameraViewController()
         let notificationsVC = NotificationsViewController()
-        let profileVC = ProfileViewController()
+        let profileVC = ProfileFactory().build()
         
         let nav1 = UINavigationController(rootViewController: homeVC)
         let nav2 = UINavigationController(rootViewController: exploreVC)

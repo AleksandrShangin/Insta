@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3FF8EA9F74A3F36456B43104 /* Pods_Insta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F3A7076E496AFB0C80887B /* Pods_Insta.framework */; };
+		84F25AC92AD4158700421B07 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25AC82AD4158700421B07 /* BaseRouter.swift */; };
+		84F25ACB2AD415BF00421B07 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25ACA2AD415BF00421B07 /* ModuleFactory.swift */; };
+		84F25AD02AD4161700421B07 /* ProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25ACC2AD4161700421B07 /* ProfileFactory.swift */; };
+		84F25AD12AD4161700421B07 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25ACD2AD4161700421B07 /* ProfileRouter.swift */; };
+		84F25AD22AD4161700421B07 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25ACE2AD4161700421B07 /* ProfileView.swift */; };
+		84F25AD32AD4161700421B07 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25ACF2AD4161700421B07 /* ProfileViewModel.swift */; };
 		FA2DF9A42631A54E00F396EE /* NoNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DF9A32631A54E00F396EE /* NoNotificationsView.swift */; };
 		FA2DF9A82631C81000F396EE /* NotificationFollowEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DF9A72631C81000F396EE /* NotificationFollowEventTableViewCell.swift */; };
 		FA2DF9AC2631C86D00F396EE /* NotificationLikeEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DF9AB2631C86D00F396EE /* NotificationLikeEventTableViewCell.swift */; };
@@ -54,6 +60,12 @@
 
 /* Begin PBXFileReference section */
 		08F3A7076E496AFB0C80887B /* Pods_Insta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Insta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84F25AC82AD4158700421B07 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		84F25ACA2AD415BF00421B07 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
+		84F25ACC2AD4161700421B07 /* ProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFactory.swift; sourceTree = "<group>"; };
+		84F25ACD2AD4161700421B07 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		84F25ACE2AD4161700421B07 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		84F25ACF2AD4161700421B07 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		BEF14AEBB96A64AA1C916242 /* Pods-Insta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Insta.debug.xcconfig"; path = "Target Support Files/Pods-Insta/Pods-Insta.debug.xcconfig"; sourceTree = "<group>"; };
 		F9305F96689D60D4124626C0 /* Pods-Insta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Insta.release.xcconfig"; path = "Target Support Files/Pods-Insta/Pods-Insta.release.xcconfig"; sourceTree = "<group>"; };
 		FA2DF9A32631A54E00F396EE /* NoNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNotificationsView.swift; sourceTree = "<group>"; };
@@ -131,6 +143,46 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		84F25AC52AD4152F00421B07 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				84F25AC62AD4153E00421B07 /* Profile */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		84F25AC62AD4153E00421B07 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				84F25AD42AD41C9B00421B07 /* Views */,
+				84F25ACE2AD4161700421B07 /* ProfileView.swift */,
+				FA89CE462604FF90004A827D /* ProfileViewController.swift */,
+				84F25ACF2AD4161700421B07 /* ProfileViewModel.swift */,
+				84F25ACD2AD4161700421B07 /* ProfileRouter.swift */,
+				84F25ACC2AD4161700421B07 /* ProfileFactory.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		84F25AC72AD4157300421B07 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				84F25ACA2AD415BF00421B07 /* ModuleFactory.swift */,
+				84F25AC82AD4158700421B07 /* BaseRouter.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		84F25AD42AD41C9B00421B07 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA65A0862611B60800F9A881 /* ProfileInfoHeaderCollectionReusableView.swift */,
+				FA65A0892611B7B700F9A881 /* ProfileTabsCollectionReusableView.swift */,
+				FA65A0832611B23600F9A881 /* PhotoCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FA2DF9A62631C78B00F396EE /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,7 +198,6 @@
 				FA2DF9A62631C78B00F396EE /* Notifications */,
 				FA65A075260E21BB00F9A881 /* Home Feed & Post */,
 				FA65A07F26106AC200F9A881 /* FormTableViewCell.swift */,
-				FA65A0832611B23600F9A881 /* PhotoCollectionViewCell.swift */,
 				FAC9BBCD262881A300DE12D9 /* UserFollowTableViewCell.swift */,
 			);
 			path = Cells;
@@ -166,8 +217,6 @@
 		FA65A0822611B18C00F9A881 /* CollectionView Headers */ = {
 			isa = PBXGroup;
 			children = (
-				FA65A0862611B60800F9A881 /* ProfileInfoHeaderCollectionReusableView.swift */,
-				FA65A0892611B7B700F9A881 /* ProfileTabsCollectionReusableView.swift */,
 			);
 			path = "CollectionView Headers";
 			sourceTree = "<group>";
@@ -194,9 +243,11 @@
 			isa = PBXGroup;
 			children = (
 				FA89CE202604F9D2004A827D /* AppDelegate.swift */,
+				84F25AC72AD4157300421B07 /* Base */,
 				FA89CE352604FC01004A827D /* Resources */,
-				FAB03E66267FD748000C69A5 /* Managers */,
 				FA89CE362604FC14004A827D /* Models */,
+				FAB03E66267FD748000C69A5 /* Managers */,
+				84F25AC52AD4152F00421B07 /* Modules */,
 				FA89CE372604FC1F004A827D /* Views */,
 				FA89CE382604FC29004A827D /* Controllers */,
 				FA89CE2E2604F9D9004A827D /* Info.plist */,
@@ -263,7 +314,6 @@
 				FA89CE3C2604FDF7004A827D /* ExploreViewController.swift */,
 				FA89CE3F2604FEA2004A827D /* CameraViewController.swift */,
 				FA89CE432604FF70004A827D /* NotificationsViewController.swift */,
-				FA89CE462604FF90004A827D /* ProfileViewController.swift */,
 			);
 			path = "Core Tabs";
 			sourceTree = "<group>";
@@ -432,15 +482,20 @@
 				FA89CE252604F9D2004A827D /* HomeViewController.swift in Sources */,
 				FA89CE212604F9D2004A827D /* AppDelegate.swift in Sources */,
 				FA89CE51260501E1004A827D /* RegistrationViewController.swift in Sources */,
+				84F25AC92AD4158700421B07 /* BaseRouter.swift in Sources */,
+				84F25AD12AD4161700421B07 /* ProfileRouter.swift in Sources */,
 				FAB03E6E26806A06000C69A5 /* PostRenderViewModel.swift in Sources */,
 				FA2DF9A42631A54E00F396EE /* NoNotificationsView.swift in Sources */,
 				FAB03E7026806B04000C69A5 /* EditProfileFormModel.swift in Sources */,
+				84F25ACB2AD415BF00421B07 /* ModuleFactory.swift in Sources */,
 				FA65A077260E258200F9A881 /* IGFeedPostHeaderTableViewCell.swift in Sources */,
 				FA2DF9A82631C81000F396EE /* NotificationFollowEventTableViewCell.swift in Sources */,
 				FA89CE66260505CB004A827D /* PostEditorViewController.swift in Sources */,
 				FA89CE8B2605F12E004A827D /* StorageManager.swift in Sources */,
+				84F25AD02AD4161700421B07 /* ProfileFactory.swift in Sources */,
 				FAC9BBCE262881A400DE12D9 /* UserFollowTableViewCell.swift in Sources */,
 				FA65A08026106AC200F9A881 /* FormTableViewCell.swift in Sources */,
+				84F25AD22AD4161700421B07 /* ProfileView.swift in Sources */,
 				FA89CE5426050323004A827D /* PostViewController.swift in Sources */,
 				FA65A08A2611B7B700F9A881 /* ProfileTabsCollectionReusableView.swift in Sources */,
 				FA89CE852605EE4F004A827D /* DatabaseManager.swift in Sources */,
@@ -459,6 +514,7 @@
 				FA89CE472604FF90004A827D /* ProfileViewController.swift in Sources */,
 				FA89CE882605F071004A827D /* AuthManager.swift in Sources */,
 				FAB03E7226806CFB000C69A5 /* UserRelationship.swift in Sources */,
+				84F25AD32AD4161700421B07 /* ProfileViewModel.swift in Sources */,
 				FA89CE402604FEA2004A827D /* CameraViewController.swift in Sources */,
 				FAB03E6826806619000C69A5 /* User.swift in Sources */,
 				FA65A07A260E261A00F9A881 /* IGFeedPostActionsTableViewCell.swift in Sources */,
