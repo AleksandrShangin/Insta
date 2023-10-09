@@ -38,14 +38,8 @@ final class NotificationsView: UIView {
         
         tableView = {
             let tableView = UITableView()
-            tableView.register(
-                NotificationLikeEventTableViewCell.self,
-                forCellReuseIdentifier: NotificationLikeEventTableViewCell.identifier
-            )
-            tableView.register(
-                NotificationFollowEventTableViewCell.self,
-                forCellReuseIdentifier: NotificationFollowEventTableViewCell.identifier
-            )
+            tableView.registerCell(NotificationLikeEventTableViewCell.self)
+            tableView.registerCell(NotificationFollowEventTableViewCell.self)
             tableView.isHidden = true
             return tableView
         }()

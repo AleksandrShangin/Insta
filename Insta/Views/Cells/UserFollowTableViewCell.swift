@@ -12,7 +12,6 @@ protocol UserFollowTableViewCellDelegate: AnyObject {
 }
 
 final class UserFollowTableViewCell: UITableViewCell {
-    static let identifier = "UserFollowTableViewCell"
     
     // MARK: - Properties
     

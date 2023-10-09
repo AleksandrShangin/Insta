@@ -17,7 +17,7 @@ final class ListViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UserFollowTableViewCell.self, forCellReuseIdentifier: UserFollowTableViewCell.identifier)
+        tableView.registerCell(UserFollowTableViewCell.self)
         return tableView
     }()
     
@@ -52,13 +52,12 @@ final class ListViewController: UIViewController {
 
 
 extension ListViewController: UITableViewDataSource, UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UserFollowTableViewCell.identifier, for: indexPath) as! UserFollowTableViewCell
+        let cell = tableView.dequeueCell(UserFollowTableViewCell.self, indexPath: indexPath)
         cell.configure(with: data[indexPath.row])
         cell.delegate = self
         return cell
@@ -73,7 +72,6 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
         // Go to profile of selected cell
         let model = data[indexPath.row]
     }
-    
 }
 
 

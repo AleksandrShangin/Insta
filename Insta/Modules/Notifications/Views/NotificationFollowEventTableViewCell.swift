@@ -15,8 +15,6 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    static let identifier = "NotificationFollowEventTableViewCell"
-    
     weak var delegate: NotificationFollowEventTableViewCellDelegate?
     
     private var model: UserNotification?
@@ -24,7 +22,8 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .tertiarySystemBackground
+        imageView.backgroundColor = .gray
+//        imageView.backgroundColor = .tertiarySystemBackground
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -55,12 +54,14 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
         contentView.addSubview(followButton)
         followButton.addTarget(self, action: #selector(didTapFollowButton), for: .touchUpInside)
         configureForFollow()
-        
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Lifecycle
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -112,7 +113,8 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
     
     // MARK: - Actions
     
-    @objc private func didTapFollowButton() {
+    @objc
+    private func didTapFollowButton() {
         guard let model = model else {
             return
         }
@@ -132,19 +134,13 @@ final class NotificationFollowEventTableViewCell: UITableViewCell {
             case .following:
                 // show unfollow button
                 configureForFollow()
-                
             case .not_following:
                 // show follow button
                 followButton.setTitle("Follow", for: .normal)
                 followButton.setTitleColor(.white, for: .normal)
                 followButton.layer.borderWidth = 0
-                if #available(iOS 13.0, *) {
-                    followButton.backgroundColor = .link
-                } else {
-                    // Fallback on earlier versions
-                }
+                followButton.backgroundColor = .link
             }
-            
         }
         label.text = model.text
         profileImageView.sd_setImage(with: model.user.profilePhoto, completed: nil)

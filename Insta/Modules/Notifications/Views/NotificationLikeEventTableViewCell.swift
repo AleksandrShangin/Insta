@@ -13,7 +13,6 @@ protocol NotificationLikeEventTableViewCellDelegate: AnyObject {
 }
 
 final class NotificationLikeEventTableViewCell: UITableViewCell {
-    static let identifier = "NotificationLikeEventTableViewCell"
     
     // MARK: - Properties
     
@@ -114,12 +113,12 @@ final class NotificationLikeEventTableViewCell: UITableViewCell {
         case .like(let post):
             let thumbnail = post.thumbnailImage
             guard !thumbnail.absoluteString.contains("google.com") else { return }
-            postButton.sd_setBackgroundImage(with: thumbnail, for: .normal, completed: nil)
+            postButton.sd_setBackgroundImage(with: thumbnail, for: .normal)
         case .follow:
             break
         }
         label.text = model.text
-        profileImageView.sd_setImage(with: model.user.profilePhoto, completed: nil)
+        profileImageView.sd_setImage(with: model.user.profilePhoto)
     }
     
     override func prepareForReuse() {

@@ -119,13 +119,13 @@ extension NotificationsViewController: UITableViewDataSource, UITableViewDelegat
         switch model.type {
         case .like(_):
             // like cell
-            let cell = tableView.dequeueReusableCell(withIdentifier: NotificationLikeEventTableViewCell.identifier, for: indexPath) as! NotificationLikeEventTableViewCell
+            let cell = tableView.dequeueCell(NotificationLikeEventTableViewCell.self, indexPath: indexPath)
             cell.delegate = self
             cell.configure(with: model)
             return cell
         case .follow:
             // follow cell
-            let cell = tableView.dequeueReusableCell(withIdentifier: NotificationFollowEventTableViewCell.identifier, for: indexPath) as! NotificationFollowEventTableViewCell
+            let cell = tableView.dequeueCell(NotificationFollowEventTableViewCell.self, indexPath: indexPath)
 //            cell.configure(with: model)
             cell.delegate = self
             return cell

@@ -1,8 +1,8 @@
 //
-//  Extensions.swift
+//  UIView+Extensions.swift
 //  Insta
 //
-//  Created by Alex on 3/21/21.
+//  Created by Alexander Shangin on 09.10.2023.
 //
 
 import UIKit
@@ -34,13 +34,3 @@ extension UIView {
     }
     
 }
-
-
-extension String {
-    
-    func safeDatabaseKey() -> String {
-        return self.replacingOccurrences(of: "@", with: "-").replacingOccurrences(of: ".", with: "-")
-    }
-}
-
-
