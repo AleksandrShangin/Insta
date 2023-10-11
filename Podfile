@@ -2,6 +2,10 @@ platform :ios, '13.0'
 
 use_frameworks!
 
+def ui_pods
+    pod 'SnapKit'
+end
+    
 def network_pods
     pod 'Appirater'
     pod 'SDWebImage'
@@ -18,6 +22,7 @@ def firebase_pods
 end    
 
 target 'Insta' do
+    ui_pods
     network_pods   
     firebase_pods
 end

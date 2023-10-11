@@ -1,5 +1,5 @@
 //
-//  IGFeedPostGeneralTableViewCell.swift
+//  PostActionsTableViewCell.swift
 //  Insta
 //
 //  Created by Alex on 3/26/21.
@@ -7,16 +7,14 @@
 
 import UIKit
 
+class PostActionsTableViewCell: UITableViewCell {
 
-/// Comments
-class IGFeedPostGeneralTableViewCell: UITableViewCell {
-    
-    static let identifier = "IGFeedPostGeneralTableViewCell"
+    static let identifier = "IGFeedPostActionsTableViewCell"
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .systemOrange
+        contentView.backgroundColor = .systemGreen
     }
     
     required init?(coder: NSCoder) {
@@ -32,7 +30,5 @@ class IGFeedPostGeneralTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
     }
-    
-    
-    
+
 }

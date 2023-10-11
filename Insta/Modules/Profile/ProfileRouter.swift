@@ -57,9 +57,9 @@ final class ProfileRouter: BaseRouter {
     
     func showPost() {
         // get the model and open post controller
-        let vc = PostViewController(model: nil)
-        vc.title = "Post"
-        vc.navigationItem.largeTitleDisplayMode = .never
-        viewController.navigationController?.pushViewController(vc, animated: true)
+//        let vc = PostViewController(model: nil)
+//        vc.title = "Post"
+//        vc.navigationItem.largeTitleDisplayMode = .never
+//        viewController.navigationController?.pushViewController(vc, animated: true)
     }
 }

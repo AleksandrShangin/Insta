@@ -61,7 +61,7 @@ final class NotificationLikeEventTableViewCell: UITableViewCell {
             let label = UILabel()
             label.textColor = .label
             label.numberOfLines = 0
-            label.text = "@joe liked your photo."
+//            label.text = "@joe liked your photo."
             return label
         }()
         contentView.addSubview(label)
@@ -112,7 +112,9 @@ final class NotificationLikeEventTableViewCell: UITableViewCell {
         switch model.type {
         case .like(let post):
             let thumbnail = post.thumbnailImage
-            guard !thumbnail.absoluteString.contains("google.com") else { return }
+            guard !thumbnail.absoluteString.contains("google.com") else {
+                return
+            }
             postButton.sd_setBackgroundImage(with: thumbnail, for: .normal)
         case .follow:
             break
@@ -128,7 +130,6 @@ final class NotificationLikeEventTableViewCell: UITableViewCell {
         postButton.backgroundColor = nil
     }
 
-    
     // MARK: - Actions
     
     @objc
