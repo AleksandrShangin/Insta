@@ -9,7 +9,7 @@ import Foundation
 
 final class HomeRouter: BaseRouter {
     func showLogin() {
-        let loginVC = LoginViewController()
+        let loginVC = LoginFactory().build()
         loginVC.modalPresentationStyle = .fullScreen
         viewController.present(loginVC, animated: false, completion: nil)
     }

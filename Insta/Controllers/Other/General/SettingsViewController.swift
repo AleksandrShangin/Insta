@@ -122,7 +122,7 @@ final class SettingsViewController: UIViewController {
                 DispatchQueue.main.async {
                     if success {
                         // present log in
-                        let loginVC = LoginViewController()
+                        let loginVC = LoginFactory().build()
                         loginVC.modalPresentationStyle = .fullScreen
                         self.present(loginVC, animated: true) {
                             self.navigationController?.popToRootViewController(animated: false)

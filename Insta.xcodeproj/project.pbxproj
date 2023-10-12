@@ -13,6 +13,10 @@
 		8402D16A2AD8079400883CB5 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402D1662AD8079400883CB5 /* HomeRouter.swift */; };
 		8402D16B2AD8079400883CB5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402D1672AD8079400883CB5 /* HomeView.swift */; };
 		8402D16C2AD8079400883CB5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402D1682AD8079400883CB5 /* HomeViewModel.swift */; };
+		8402D1722AD86C2500883CB5 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402D16E2AD86C2500883CB5 /* LoginFactory.swift */; };
+		8402D1732AD86C2500883CB5 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402D16F2AD86C2500883CB5 /* LoginRouter.swift */; };
+		8402D1742AD86C2500883CB5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402D1702AD86C2500883CB5 /* LoginView.swift */; };
+		8402D1752AD86C2500883CB5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402D1712AD86C2500883CB5 /* LoginViewModel.swift */; };
 		84F25AC92AD4158700421B07 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25AC82AD4158700421B07 /* BaseRouter.swift */; };
 		84F25ACB2AD415BF00421B07 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25ACA2AD415BF00421B07 /* ModuleFactory.swift */; };
 		84F25AD02AD4161700421B07 /* ProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25ACC2AD4161700421B07 /* ProfileFactory.swift */; };
@@ -80,6 +84,10 @@
 		8402D1662AD8079400883CB5 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		8402D1672AD8079400883CB5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8402D1682AD8079400883CB5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		8402D16E2AD86C2500883CB5 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
+		8402D16F2AD86C2500883CB5 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		8402D1702AD86C2500883CB5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		8402D1712AD86C2500883CB5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		84F25AC82AD4158700421B07 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		84F25ACA2AD415BF00421B07 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		84F25ACC2AD4161700421B07 /* ProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFactory.swift; sourceTree = "<group>"; };
@@ -173,9 +181,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8402D16D2AD86BF000883CB5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8402D1702AD86C2500883CB5 /* LoginView.swift */,
+				FA89CE4D260501BC004A827D /* LoginViewController.swift */,
+				8402D1712AD86C2500883CB5 /* LoginViewModel.swift */,
+				8402D16F2AD86C2500883CB5 /* LoginRouter.swift */,
+				8402D16E2AD86C2500883CB5 /* LoginFactory.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		84F25AC52AD4152F00421B07 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8402D16D2AD86BF000883CB5 /* Login */,
 				84F25AEF2AD69CEE00421B07 /* Home */,
 				84F25AE62AD53A0900421B07 /* Post */,
 				84F25AD52AD455D900421B07 /* Notifications */,
@@ -286,36 +307,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		FA2DF9A62631C78B00F396EE /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Notifications;
-			sourceTree = "<group>";
-		};
 		FA65A070260E10F700F9A881 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				FA2DF9A62631C78B00F396EE /* Notifications */,
-				FA65A075260E21BB00F9A881 /* Home Feed & Post */,
 				FA65A07F26106AC200F9A881 /* FormTableViewCell.swift */,
 				FAC9BBCD262881A300DE12D9 /* UserFollowTableViewCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		FA65A075260E21BB00F9A881 /* Home Feed & Post */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Home Feed & Post";
-			sourceTree = "<group>";
-		};
-		FA65A0822611B18C00F9A881 /* CollectionView Headers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "CollectionView Headers";
 			sourceTree = "<group>";
 		};
 		FA89CE142604F9D2004A827D = {
@@ -342,12 +340,13 @@
 				FA89CE202604F9D2004A827D /* AppDelegate.swift */,
 				84F25AC72AD4157300421B07 /* Base */,
 				84F25ADF2AD47E0A00421B07 /* Extensions */,
-				FA89CE352604FC01004A827D /* Resources */,
 				FA89CE362604FC14004A827D /* Models */,
 				FAB03E66267FD748000C69A5 /* Managers */,
 				84F25AC52AD4152F00421B07 /* Modules */,
 				FA89CE372604FC1F004A827D /* Views */,
 				FA89CE382604FC29004A827D /* Controllers */,
+				FA89CE352604FC01004A827D /* Resources */,
+				FA89CE2B2604F9D9004A827D /* LaunchScreen.storyboard */,
 				FA89CE2E2604F9D9004A827D /* Info.plist */,
 				FA89CE6B2605D436004A827D /* GoogleService-Info.plist */,
 			);
@@ -378,9 +377,7 @@
 		FA89CE372604FC1F004A827D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FA65A0822611B18C00F9A881 /* CollectionView Headers */,
 				FA65A070260E10F700F9A881 /* Cells */,
-				FA89CE392604FC95004A827D /* Storyboards */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -392,14 +389,6 @@
 				FA89CE492604FFDA004A827D /* Core Tabs */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		FA89CE392604FC95004A827D /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				FA89CE2B2604F9D9004A827D /* LaunchScreen.storyboard */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		FA89CE492604FFDA004A827D /* Core Tabs */ = {
@@ -424,7 +413,6 @@
 		FA89CE4C26050178004A827D /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				FA89CE4D260501BC004A827D /* LoginViewController.swift */,
 				FA89CE50260501E1004A827D /* RegistrationViewController.swift */,
 			);
 			path = Onboarding;
@@ -592,6 +580,7 @@
 				FAC9BBCE262881A400DE12D9 /* UserFollowTableViewCell.swift in Sources */,
 				FA65A08026106AC200F9A881 /* FormTableViewCell.swift in Sources */,
 				84F25AD22AD4161700421B07 /* ProfileView.swift in Sources */,
+				8402D1732AD86C2500883CB5 /* LoginRouter.swift in Sources */,
 				FA89CE5426050323004A827D /* PostViewController.swift in Sources */,
 				FA65A08A2611B7B700F9A881 /* ProfileTabsCollectionReusableView.swift in Sources */,
 				84F25ADC2AD456D400421B07 /* NotificationsView.swift in Sources */,
@@ -614,15 +603,18 @@
 				8402D16C2AD8079400883CB5 /* HomeViewModel.swift in Sources */,
 				84F25AEE2AD53A4400421B07 /* PostViewModel.swift in Sources */,
 				FA89CE472604FF90004A827D /* ProfileViewController.swift in Sources */,
+				8402D1722AD86C2500883CB5 /* LoginFactory.swift in Sources */,
 				FA89CE882605F071004A827D /* AuthManager.swift in Sources */,
 				FAB03E7226806CFB000C69A5 /* UserRelationship.swift in Sources */,
 				84F25AD32AD4161700421B07 /* ProfileViewModel.swift in Sources */,
 				84F25AE52AD47E6E00421B07 /* UITableView+Extensions.swift in Sources */,
+				8402D1752AD86C2500883CB5 /* LoginViewModel.swift in Sources */,
 				84F25ADD2AD456D400421B07 /* NotificationsViewModel.swift in Sources */,
 				FA89CE402604FEA2004A827D /* CameraViewController.swift in Sources */,
 				84F25ADB2AD456D400421B07 /* NotificationsRouter.swift in Sources */,
 				84F25AE32AD47E4800421B07 /* String+Extensions.swift in Sources */,
 				FAB03E6826806619000C69A5 /* User.swift in Sources */,
+				8402D1742AD86C2500883CB5 /* LoginView.swift in Sources */,
 				FA65A07A260E261A00F9A881 /* PostActionsTableViewCell.swift in Sources */,
 				8402D1642AD6F1C300883CB5 /* UIViewController+Extensions.swift in Sources */,
 				FA89CE5D26050473004A827D /* ListViewController.swift in Sources */,
