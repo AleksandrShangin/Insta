@@ -59,7 +59,7 @@ final class HomeViewController: UIViewController {
     
     private func createMockData() {
         let user = User(
-            username: "joe",
+            username: "@kanye_west",
             bio: "", name: (first: "", last: ""),
             profilePhoto: URL(string: "https://www.google.com")!,
             birthDate: Date(),
@@ -177,6 +177,7 @@ extension HomeViewController: UITableViewDataSource {
             switch model.header.renderType {
             case .header(let user):
                 let cell = tableView.dequeueCell(PostHeaderTableViewCell.self, indexPath: indexPath)
+                cell.delegate = self
                 cell.configure(with: user)
                 return cell
             default:
@@ -186,7 +187,7 @@ extension HomeViewController: UITableViewDataSource {
             switch model.post.renderType {
             case .primaryContent(let content):
                 let cell = tableView.dequeueCell(PostContentTableViewCell.self, indexPath: indexPath)
-                
+                cell.configure(with: content)
                 return cell
             default:
                 fatalError()
@@ -195,7 +196,7 @@ extension HomeViewController: UITableViewDataSource {
             switch model.actions.renderType {
             case .actions(let actions):
                 let cell = tableView.dequeueCell(PostActionsTableViewCell.self, indexPath: indexPath)
-                
+                cell.delegate = self
                 return cell
             default:
                 fatalError()
@@ -206,7 +207,7 @@ extension HomeViewController: UITableViewDataSource {
 //                return comments.count > 2 ? 2 : comments.count
                 let cell = tableView.dequeueCell(PostCommentsTableViewCell.self, indexPath: indexPath)
                 
-//                cell.configure(with: <#T##PostComment#>)
+                cell.configure(with: comments.first!)
                 return cell
             default:
                 fatalError()
@@ -215,7 +216,6 @@ extension HomeViewController: UITableViewDataSource {
         
         return UITableViewCell()
     }
-    
     
 }
 
@@ -243,5 +243,37 @@ extension HomeViewController: UITableViewDelegate {
         let subSection = section % 4
         return subSection == 3 ? 70 : 0
     }
+    
+}
+
+extension HomeViewController: PostHeaderTableViewCellDelegate {
+    func didTapMoreButton(_ cell: UITableViewCell, user: User) {
+        print(#function)
+        showAlert(
+            title: "Post Options",
+            preferredStyle: .actionSheet,
+            actions: [
+                UIAlertAction(title: "Report Post", style: .destructive) { [weak self] _ in
+                    
+                },
+                UIAlertAction(title: "Cancel", style: .cancel)
+            ]
+        )
+    }
+}
+
+extension HomeViewController: PostActionsTableViewCellDelegate {
+    func didTapLikeButton(_ cell: PostActionsTableViewCell) {
+        print(#function)
+    }
+    
+    func didTapCommentButton(_ cell: PostActionsTableViewCell) {
+        print(#function)
+    }
+    
+    func didTapSendButton(_ cell: PostActionsTableViewCell) {
+        print(#function)
+    }
+    
     
 }

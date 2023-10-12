@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3FF8EA9F74A3F36456B43104 /* Pods_Insta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F3A7076E496AFB0C80887B /* Pods_Insta.framework */; };
+		8402D1642AD6F1C300883CB5 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402D1632AD6F1C300883CB5 /* UIViewController+Extensions.swift */; };
 		84F25AC92AD4158700421B07 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25AC82AD4158700421B07 /* BaseRouter.swift */; };
 		84F25ACB2AD415BF00421B07 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25ACA2AD415BF00421B07 /* ModuleFactory.swift */; };
 		84F25AD02AD4161700421B07 /* ProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25ACC2AD4161700421B07 /* ProfileFactory.swift */; };
@@ -70,6 +71,7 @@
 
 /* Begin PBXFileReference section */
 		08F3A7076E496AFB0C80887B /* Pods_Insta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Insta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8402D1632AD6F1C300883CB5 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		84F25AC82AD4158700421B07 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		84F25ACA2AD415BF00421B07 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
 		84F25ACC2AD4161700421B07 /* ProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFactory.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				84F25AE02AD47E1E00421B07 /* UIView+Extensions.swift */,
 				84F25AE22AD47E4800421B07 /* String+Extensions.swift */,
 				84F25AE42AD47E6E00421B07 /* UITableView+Extensions.swift */,
+				8402D1632AD6F1C300883CB5 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -325,8 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				FA89CE202604F9D2004A827D /* AppDelegate.swift */,
-				84F25ADF2AD47E0A00421B07 /* Extensions */,
 				84F25AC72AD4157300421B07 /* Base */,
+				84F25ADF2AD47E0A00421B07 /* Extensions */,
 				FA89CE352604FC01004A827D /* Resources */,
 				FA89CE362604FC14004A827D /* Models */,
 				FAB03E66267FD748000C69A5 /* Managers */,
@@ -605,6 +608,7 @@
 				84F25AE32AD47E4800421B07 /* String+Extensions.swift in Sources */,
 				FAB03E6826806619000C69A5 /* User.swift in Sources */,
 				FA65A07A260E261A00F9A881 /* PostActionsTableViewCell.swift in Sources */,
+				8402D1642AD6F1C300883CB5 /* UIViewController+Extensions.swift in Sources */,
 				FA89CE5D26050473004A827D /* ListViewController.swift in Sources */,
 				84F25AED2AD53A4400421B07 /* PostView.swift in Sources */,
 				FA89CE5A2605041E004A827D /* SettingsViewController.swift in Sources */,
