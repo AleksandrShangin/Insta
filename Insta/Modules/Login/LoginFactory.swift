@@ -9,7 +9,7 @@ import Foundation
 
 final class LoginFactory: ModuleFactory {
     func build() -> LoginViewController {
-        let service = AuthManager()
+        let service = AuthManager.shared
         let viewModel = LoginViewModelImpl(service: service)
         let viewController = LoginViewController(viewModel: viewModel)
         

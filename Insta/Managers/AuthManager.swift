@@ -13,6 +13,8 @@ public class AuthManager {
     
     static let shared = AuthManager()
     
+    private init() {}
+    
     // MARK: - Public
     
     public func registerNewUser(username: String, email: String, password: String, completion: @escaping (Bool) -> Void) {
@@ -55,6 +57,7 @@ public class AuthManager {
         if let email = email {
             Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
                 guard authResult != nil, error == nil else {
+                    print(error!)
                     completion(false)
                     return
                 }

@@ -10,7 +10,7 @@ import SafariServices
 
 final class LoginRouter: BaseRouter {
     func showRegistration() {
-        let vc = RegistrationViewController()
+        let vc = RegistrationFactory().build()
         vc.title = "Create Account"
         viewController.present(UINavigationController(rootViewController: vc), animated: true)
     }
