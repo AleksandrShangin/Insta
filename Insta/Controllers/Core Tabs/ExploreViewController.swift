@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import ColorCompatibility
-
 
 final class ExploreViewController: UIViewController {
 
@@ -15,7 +13,7 @@ final class ExploreViewController: UIViewController {
     
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.backgroundColor = ColorCompatibility.secondarySystemBackground
+        searchBar.backgroundColor = .secondarySystemBackground
         return searchBar
     }()
     
@@ -25,7 +23,7 @@ final class ExploreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = ColorCompatibility.systemBackground
+        view.backgroundColor = .systemBackground
         
         navigationController?.navigationBar.topItem?.titleView = searchBar
         

@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import ColorCompatibility
-
-
 
 final class EditProfileViewController: UIViewController {
 
@@ -30,7 +27,7 @@ final class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = ColorCompatibility.systemBackground
+        view.backgroundColor = .systemBackground
         // Table View
         view.addSubview(tableView)
         tableView.dataSource = self
@@ -76,7 +73,7 @@ final class EditProfileViewController: UIViewController {
         profilePhotoButton.layer.masksToBounds = true
         profilePhotoButton.layer.cornerRadius = size/2.0
         
-        profilePhotoButton.tintColor = ColorCompatibility.label
+        profilePhotoButton.tintColor = .label
         
         profilePhotoButton.addTarget(self, action: #selector(didTapProfilePhotoButton), for: .touchUpInside)
         if #available(iOS 13.0, *) {
@@ -85,7 +82,7 @@ final class EditProfileViewController: UIViewController {
             // Fallback on earlier versions
         }
         profilePhotoButton.layer.borderWidth = 1
-        profilePhotoButton.layer.borderColor = ColorCompatibility.secondarySystemBackground.cgColor
+        profilePhotoButton.layer.borderColor = UIColor.secondarySystemBackground.cgColor
         return header
     }
     
