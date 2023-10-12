@@ -9,7 +9,6 @@ end
 def network_pods
     pod 'Appirater'
     pod 'SDWebImage'
-    pod 'ColorCompatibility'
 end
 
 def firebase_pods
