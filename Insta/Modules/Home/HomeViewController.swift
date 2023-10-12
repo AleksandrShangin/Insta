@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 import FirebaseAuth
 
 struct HomeFeedRenderViewModel {
@@ -19,34 +20,37 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Properties
     
-    private var feedRenderModels = [HomeFeedRenderViewModel]()
+    private var tableView: UITableView!
     
+    private let viewModel: HomeViewModel
+    private var router: HomeRouter!
     
-    // MARK: - UI
+    private var subscriptions = Set<AnyCancellable>()
     
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.registerCell(PostHeaderTableViewCell.self)
-        tableView.registerCell(PostContentTableViewCell.self)
-        tableView.registerCell(PostActionsTableViewCell.self)
-        tableView.registerCell(PostCommentsTableViewCell.self)
-        return tableView
-    }()
+    // MARK: - Init
     
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        createMockData()
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        
+    override func loadView() {
+        let view = HomeView()
+        self.view = view
+        self.tableView = view.tableView
     }
     
-    override func viewDidLayoutSubviews() {
-        tableView.frame = view.bounds
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureRouter()
+        configureViews()
+        configureBindings()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -57,61 +61,26 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Private Methods
     
-    private func createMockData() {
-        let user = User(
-            username: "@kanye_west",
-            bio: "", name: (first: "", last: ""),
-            profilePhoto: URL(string: "https://www.google.com")!,
-            birthDate: Date(),
-            gender: .male,
-            counts: UserCount(followers: 1, following: 1, posts: 1),
-            joinDate: Date()
-        )
-        let post = UserPost(
-            identifier: "",
-            postType: .photo,
-            thumbnailImage: URL(string: "https://www.google.com")!,
-            postURL: URL(string: "https://www.google.com")!,
-            caption: nil,
-            likedCount: [],
-            comments: [],
-            postedDate: Date(),
-            taggedUsers: [],
-            owner: user
-        )
-        
-        
-        for x in 0...4 {
-            let viewModel = HomeFeedRenderViewModel(
-                header: PostRenderViewModel(renderType: .header(provider: user)),
-                post: PostRenderViewModel(renderType: .primaryContent(content: post)),
-                actions: PostRenderViewModel(renderType: .actions(provider: "")),
-                comments: PostRenderViewModel(renderType: .comments(comments: [
-                    PostComment(
-                        identifier: "123_\(x)",
-                        username: "@dave",
-                        text: "Great post!",
-                        postedDate: Date(),
-                        likes: []
-                    ),
-                    PostComment(
-                        identifier: "123_\(x)",
-                        username: "@dave",
-                        text: "Great post!",
-                        postedDate: Date(),
-                        likes: []
-                    ),
-                ]))
-                )
-            feedRenderModels.append(viewModel)
-        }
+    private func configureRouter() {
+        router = HomeRouter(viewController: self)
+    }
+    
+    private func configureViews() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    private func configureBindings() {
+        viewModel.feedRenderModels
+            .sink { [weak self] models in
+                self?.tableView.reloadData()
+            }
+            .store(in: &subscriptions)
     }
     
     private func handleNotAuthenticated() {
         if Auth.auth().currentUser == nil {
-            let loginVC = LoginViewController()
-            loginVC.modalPresentationStyle = .fullScreen
-            present(loginVC, animated: false, completion: nil)
+            router.showLogin()
         }
     }
 
@@ -123,16 +92,16 @@ final class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return feedRenderModels.count * 4
+        return viewModel.feedRenderModels.value.count * 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let model: HomeFeedRenderViewModel
         if section == 0 {
-            model = feedRenderModels[0]
+            model = viewModel.feedRenderModels.value[0]
         } else {
             let position = section % 4 == 0 ? section / 4 : (section - (section % 4)) / 4
-            model = feedRenderModels[position]
+            model = viewModel.feedRenderModels.value[position]
         }
         
         let subSection = section % 4
@@ -165,10 +134,10 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model: HomeFeedRenderViewModel
         if indexPath.section == 0 {
-            model = feedRenderModels[0]
+            model = viewModel.feedRenderModels.value[0]
         } else {
             let position = indexPath.section % 4 == 0 ? indexPath.section / 4 : (indexPath.section - (indexPath.section % 4)) / 4
-            model = feedRenderModels[position]
+            model = viewModel.feedRenderModels.value[position]
         }
         
         let subSection = indexPath.section % 4
@@ -274,6 +243,4 @@ extension HomeViewController: PostActionsTableViewCellDelegate {
     func didTapSendButton(_ cell: PostActionsTableViewCell) {
         print(#function)
     }
-    
-    
 }

@@ -14,7 +14,7 @@ class TabBarViewController: UITabBarController {
         
         view.backgroundColor = .white
         
-        let homeVC = HomeViewController()
+        let homeVC = HomeFactory().build()
         let exploreVC = ExploreViewController()
         let cameraVC = CameraViewController()
         let notificationsVC = NotificationsFactory().build()
