@@ -22,12 +22,12 @@ final class ProfileViewModelImpl: ProfileViewModel {
     
     //MARK: - Private Properties
     
-    private let service: DatabaseManager
+    private let service: DatabaseService
     private var subscriptions = Set<AnyCancellable>()
     
     //MARK: - Init
     
-    init(service: DatabaseManager) {
+    init(service: DatabaseService) {
         self.service = service
     }
     

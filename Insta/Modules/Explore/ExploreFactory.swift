@@ -9,7 +9,7 @@ import Foundation
 
 final class ExploreFactory: ModuleFactory {
     func build() -> ExploreViewController {
-        let service = DatabaseManager.shared
+        let service = DatabaseService.shared
         let viewModel = ExploreViewModelImpl(service: service)
         let viewController = ExploreViewController(viewModel: viewModel)
         

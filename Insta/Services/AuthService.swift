@@ -1,5 +1,5 @@
 //
-//  AuthManager.swift
+//  AuthService.swift
 //  Insta
 //
 //  Created by Alex on 3/20/21.
@@ -8,21 +8,25 @@
 import Foundation
 import FirebaseAuth
 
-
-public class AuthManager {
+public class AuthService {
     
-    static let shared = AuthManager()
+    static let shared = AuthService()
     
     private init() {}
     
     // MARK: - Public
     
-    public func registerNewUser(username: String, email: String, password: String, completion: @escaping (Bool) -> Void) {
+    public func registerNewUser(
+        username: String,
+        email: String,
+        password: String,
+        completion: @escaping (Bool) -> Void
+    ) {
         /*
          - check if username is available
          - check if email is available
          */
-        DatabaseManager.shared.canCreateNewUser(with: email, username: username) { (canCreate) in
+        DatabaseService.shared.canCreateNewUser(with: email, username: username) { canCreate in
             if canCreate {
                 /*
                  - create account
@@ -35,7 +39,7 @@ public class AuthManager {
                         return
                     }
                     // insert account into database
-                    DatabaseManager.shared.insertNewUser(with: email, username: username) { (inserted) in
+                    DatabaseService.shared.insertNewUser(with: email, username: username) { inserted in
                         if inserted {
                             completion(true)
                             return

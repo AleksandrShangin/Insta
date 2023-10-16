@@ -9,7 +9,7 @@ import Foundation
 
 final class RegistrationFactory: ModuleFactory {
     func build() -> RegistrationViewController {
-        let service = AuthManager.shared
+        let service = AuthService.shared
         let viewModel = RegistrationViewModelImpl(service: service)
         let viewController = RegistrationViewController(viewModel: viewModel)
         

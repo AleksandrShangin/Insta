@@ -89,7 +89,7 @@ final class LoginViewController: UIViewController {
             // username
             username = usernameEmail
         }
-        AuthManager.shared.loginUser(username: username, email: email, password: password) { (success) in
+        AuthService.shared.loginUser(username: username, email: email, password: password) { (success) in
             DispatchQueue.main.async {
                 if success {
                     // user logged in

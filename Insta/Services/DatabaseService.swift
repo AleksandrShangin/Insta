@@ -1,5 +1,5 @@
 //
-//  DatabaseManager.swift
+//  DatabaseService.swift
 //  Insta
 //
 //  Created by Alex on 3/20/21.
@@ -8,13 +8,13 @@
 import Foundation
 import FirebaseDatabase
 
-
-
-public class DatabaseManager {
+public class DatabaseService {
     
-    static let shared = DatabaseManager()
+    static let shared = DatabaseService()
     
     private let database = Database.database().reference()
+    
+    private init() {}
     
     // MARK: - Public
     

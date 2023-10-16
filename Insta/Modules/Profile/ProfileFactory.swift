@@ -9,7 +9,7 @@ import Foundation
 
 final class ProfileFactory: ModuleFactory {
     func build() -> ProfileViewController {
-        let service = DatabaseManager()
+        let service = DatabaseService.shared
         let viewModel = ProfileViewModelImpl(service: service)
         let viewController = ProfileViewController(viewModel: viewModel)
         

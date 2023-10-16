@@ -22,12 +22,12 @@ final class LoginViewModelImpl: LoginViewModel {
     
     //MARK: - Private Properties
     
-    private let service: AuthManager
+    private let service: AuthService
     private var subscriptions = Set<AnyCancellable>()
     
     //MARK: - Init
     
-    init(service: AuthManager) {
+    init(service: AuthService) {
         self.service = service
     }
     

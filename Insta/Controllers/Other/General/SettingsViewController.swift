@@ -118,7 +118,7 @@ final class SettingsViewController: UIViewController {
         let actionSheet = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         actionSheet.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
-            AuthManager.shared.logOut { (success) in
+            AuthService.shared.logOut { (success) in
                 DispatchQueue.main.async {
                     if success {
                         // present log in

@@ -29,14 +29,14 @@ final class PostViewModelImpl: PostViewModel {
     
     //MARK: - Private Properties
     
-    private let service: DatabaseManager
+    private let service: DatabaseService
     private var subscriptions = Set<AnyCancellable>()
     
     //MARK: - Init
     
     init(
         post: UserPost,
-        service: DatabaseManager
+        service: DatabaseService
     ) {
         self.userPost = post
         self.service = service

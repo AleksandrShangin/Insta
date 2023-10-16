@@ -9,7 +9,7 @@ import Foundation
 
 final class HomeFactory: ModuleFactory {
     func build() -> HomeViewController {
-        let service = DatabaseManager()
+        let service = DatabaseService.shared
         let viewModel = HomeViewModelImpl(service: service)
         let viewController = HomeViewController(viewModel: viewModel)
         

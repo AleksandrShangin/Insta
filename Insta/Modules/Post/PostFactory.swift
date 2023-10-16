@@ -15,7 +15,7 @@ final class PostFactory: ModuleFactory {
     }
     
     func build() -> PostViewController {
-        let service = DatabaseManager()
+        let service = DatabaseService.shared
         let viewModel = PostViewModelImpl(post: self.post, service: service)
         let viewController = PostViewController(viewModel: viewModel)
         

@@ -9,8 +9,7 @@ import Foundation
 
 final class NotificationsFactory: ModuleFactory {
     func build() -> NotificationsViewController {
-//        let service = NotificationsService()
-        let service = DatabaseManager()
+        let service = DatabaseService.shared
         let viewModel = NotificationsViewModelImpl(service: service)
         let viewController = NotificationsViewController(viewModel: viewModel)
         

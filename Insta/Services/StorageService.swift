@@ -1,5 +1,5 @@
 //
-//  StorageManager.swift
+//  StorageService.swift
 //  Insta
 //
 //  Created by Alex on 3/20/21.
@@ -8,17 +8,17 @@
 import Foundation
 import FirebaseStorage
 
-public class StorageManager {
+public class StorageService {
     
-    static let shared = StorageManager()
+    static let shared = StorageService()
 
-    
     private let bucket = Storage.storage().reference()
-    
     
     public enum IGStorageManagerError: Error {
         case failedToDownload
     }
+    
+    private init() {}
     
     // MARK: - Public
     
