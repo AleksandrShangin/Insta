@@ -12,10 +12,6 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         
     // MARK: - Properties
     
-    static let identifier = "PhotoCollectionViewCell"
-        
-    // MARK: - UI
-    
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true

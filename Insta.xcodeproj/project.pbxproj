@@ -38,6 +38,11 @@
 		84F25AEC2AD53A4400421B07 /* PostRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25AE82AD53A4400421B07 /* PostRouter.swift */; };
 		84F25AED2AD53A4400421B07 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25AE92AD53A4400421B07 /* PostView.swift */; };
 		84F25AEE2AD53A4400421B07 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25AEA2AD53A4400421B07 /* PostViewModel.swift */; };
+		84F9D95F2ADC466C004005CA /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D95E2ADC466C004005CA /* UICollectionView+Extensions.swift */; };
+		84F9D9652ADD2F88004005CA /* ExploreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D9612ADD2F88004005CA /* ExploreFactory.swift */; };
+		84F9D9662ADD2F88004005CA /* ExploreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D9622ADD2F88004005CA /* ExploreRouter.swift */; };
+		84F9D9672ADD2F88004005CA /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D9632ADD2F88004005CA /* ExploreView.swift */; };
+		84F9D9682ADD2F88004005CA /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D9642ADD2F88004005CA /* ExploreViewModel.swift */; };
 		FA2DF9A42631A54E00F396EE /* NoNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DF9A32631A54E00F396EE /* NoNotificationsView.swift */; };
 		FA2DF9A82631C81000F396EE /* NotificationFollowEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DF9A72631C81000F396EE /* NotificationFollowEventTableViewCell.swift */; };
 		FA2DF9AC2631C86D00F396EE /* NotificationLikeEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DF9AB2631C86D00F396EE /* NotificationLikeEventTableViewCell.swift */; };
@@ -113,6 +118,11 @@
 		84F25AE82AD53A4400421B07 /* PostRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRouter.swift; sourceTree = "<group>"; };
 		84F25AE92AD53A4400421B07 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		84F25AEA2AD53A4400421B07 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		84F9D95E2ADC466C004005CA /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		84F9D9612ADD2F88004005CA /* ExploreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFactory.swift; sourceTree = "<group>"; };
+		84F9D9622ADD2F88004005CA /* ExploreRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreRouter.swift; sourceTree = "<group>"; };
+		84F9D9632ADD2F88004005CA /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		84F9D9642ADD2F88004005CA /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		BEF14AEBB96A64AA1C916242 /* Pods-Insta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Insta.debug.xcconfig"; path = "Target Support Files/Pods-Insta/Pods-Insta.debug.xcconfig"; sourceTree = "<group>"; };
 		F9305F96689D60D4124626C0 /* Pods-Insta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Insta.release.xcconfig"; path = "Target Support Files/Pods-Insta/Pods-Insta.release.xcconfig"; sourceTree = "<group>"; };
 		FA2DF9A32631A54E00F396EE /* NoNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNotificationsView.swift; sourceTree = "<group>"; };
@@ -219,6 +229,7 @@
 				8402D16D2AD86BF000883CB5 /* Login */,
 				8402D1762AD8759D00883CB5 /* Registration */,
 				84F25AEF2AD69CEE00421B07 /* Home */,
+				84F9D9602ADD2EF8004005CA /* Explore */,
 				84F25AE62AD53A0900421B07 /* Post */,
 				84F25AD52AD455D900421B07 /* Notifications */,
 				84F25AC62AD4153E00421B07 /* Profile */,
@@ -287,6 +298,7 @@
 				84F25AE02AD47E1E00421B07 /* UIView+Extensions.swift */,
 				84F25AE22AD47E4800421B07 /* String+Extensions.swift */,
 				84F25AE42AD47E6E00421B07 /* UITableView+Extensions.swift */,
+				84F9D95E2ADC466C004005CA /* UICollectionView+Extensions.swift */,
 				8402D1632AD6F1C300883CB5 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
@@ -326,6 +338,18 @@
 				FA65A07C260E266100F9A881 /* PostCommentsTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		84F9D9602ADD2EF8004005CA /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				84F9D9632ADD2F88004005CA /* ExploreView.swift */,
+				FA89CE3C2604FDF7004A827D /* ExploreViewController.swift */,
+				84F9D9642ADD2F88004005CA /* ExploreViewModel.swift */,
+				84F9D9612ADD2F88004005CA /* ExploreFactory.swift */,
+				84F9D9622ADD2F88004005CA /* ExploreRouter.swift */,
+			);
+			path = Explore;
 			sourceTree = "<group>";
 		};
 		FA65A070260E10F700F9A881 /* Cells */ = {
@@ -416,7 +440,6 @@
 			isa = PBXGroup;
 			children = (
 				FAB03E64267FD670000C69A5 /* TabBarViewController.swift */,
-				FA89CE3C2604FDF7004A827D /* ExploreViewController.swift */,
 				FA89CE3F2604FEA2004A827D /* CameraViewController.swift */,
 			);
 			path = "Core Tabs";
@@ -587,12 +610,14 @@
 				8402D16B2AD8079400883CB5 /* HomeView.swift in Sources */,
 				FA89CE51260501E1004A827D /* RegistrationViewController.swift in Sources */,
 				84F25AC92AD4158700421B07 /* BaseRouter.swift in Sources */,
+				84F9D95F2ADC466C004005CA /* UICollectionView+Extensions.swift in Sources */,
 				84F25AD12AD4161700421B07 /* ProfileRouter.swift in Sources */,
 				FAB03E6E26806A06000C69A5 /* PostRenderViewModel.swift in Sources */,
 				FA2DF9A42631A54E00F396EE /* NoNotificationsView.swift in Sources */,
 				FAB03E7026806B04000C69A5 /* EditProfileFormModel.swift in Sources */,
 				84F25ACB2AD415BF00421B07 /* ModuleFactory.swift in Sources */,
 				FA65A077260E258200F9A881 /* PostHeaderTableViewCell.swift in Sources */,
+				84F9D9652ADD2F88004005CA /* ExploreFactory.swift in Sources */,
 				FA2DF9A82631C81000F396EE /* NotificationFollowEventTableViewCell.swift in Sources */,
 				8402D17C2AD8765F00883CB5 /* RegistrationRouter.swift in Sources */,
 				FA89CE66260505CB004A827D /* PostEditorViewController.swift in Sources */,
@@ -609,6 +634,7 @@
 				84F25ADC2AD456D400421B07 /* NotificationsView.swift in Sources */,
 				FA89CE852605EE4F004A827D /* DatabaseManager.swift in Sources */,
 				FA89CE442604FF70004A827D /* NotificationsViewController.swift in Sources */,
+				84F9D9682ADD2F88004005CA /* ExploreViewModel.swift in Sources */,
 				FAB03E65267FD671000C69A5 /* TabBarViewController.swift in Sources */,
 				FA65A072260E11F600F9A881 /* PostContentTableViewCell.swift in Sources */,
 				FA65A0842611B23600F9A881 /* PhotoCollectionViewCell.swift in Sources */,
@@ -620,6 +646,7 @@
 				FAB03E6C268067BF000C69A5 /* UserNotification.swift in Sources */,
 				FA65A07D260E266100F9A881 /* PostCommentsTableViewCell.swift in Sources */,
 				FA2DF9AC2631C86D00F396EE /* NotificationLikeEventTableViewCell.swift in Sources */,
+				84F9D9672ADD2F88004005CA /* ExploreView.swift in Sources */,
 				FA89CE6026050557004A827D /* SearchViewController.swift in Sources */,
 				FA65A0872611B60800F9A881 /* ProfileInfoHeaderCollectionReusableView.swift in Sources */,
 				84F25AEB2AD53A4400421B07 /* PostFactory.swift in Sources */,
@@ -630,6 +657,7 @@
 				8402D17B2AD8765F00883CB5 /* RegistrationFactory.swift in Sources */,
 				FA89CE882605F071004A827D /* AuthManager.swift in Sources */,
 				FAB03E7226806CFB000C69A5 /* UserRelationship.swift in Sources */,
+				84F9D9662ADD2F88004005CA /* ExploreRouter.swift in Sources */,
 				84F25AD32AD4161700421B07 /* ProfileViewModel.swift in Sources */,
 				84F25AE52AD47E6E00421B07 /* UITableView+Extensions.swift in Sources */,
 				8402D1752AD86C2500883CB5 /* LoginViewModel.swift in Sources */,

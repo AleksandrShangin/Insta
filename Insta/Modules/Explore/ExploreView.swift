@@ -1,13 +1,13 @@
 //  
-//  ProfileView.swift
+//  ExploreView.swift
 //  Insta
 //
-//  Created by Alexander Shangin on 09.10.2023.
+//  Created by Alexander Shangin on 16.10.2023.
 //
 
 import UIKit
 
-final class ProfileView: UIView {
+final class ExploreView: UIView {
     
     //MARK: - Properties
     
@@ -41,21 +41,8 @@ final class ProfileView: UIView {
             layout.minimumLineSpacing = 1
             layout.minimumInteritemSpacing = 1
             layout.sectionInset = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 1)
-            
             let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-            // Cell
             collectionView.registerCell(PhotoCollectionViewCell.self)
-            // Headers
-            collectionView.register(
-                ProfileInfoHeaderCollectionReusableView.self,
-                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier
-            )
-            collectionView.register(
-                ProfileTabsCollectionReusableView.self,
-                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                withReuseIdentifier: ProfileTabsCollectionReusableView.identifier
-            )
             return collectionView
         }()
         addSubview(collectionView)

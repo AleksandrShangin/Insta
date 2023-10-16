@@ -113,6 +113,7 @@ extension PostViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         case .comments(let comments):
+            print(comments)
             let cell = tableView.dequeueCell(PostCommentsTableViewCell.self, indexPath: indexPath)
             let comment = comments[indexPath.row]
             cell.configure(with: comment)

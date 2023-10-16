@@ -91,7 +91,7 @@ extension ProfileViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 //        let model = userPosts[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
+        let cell = collectionView.dequeueCell(PhotoCollectionViewCell.self, indexPath: indexPath)
 //        cell.configure(with: model)
         cell.backgroundColor = .systemBlue
         cell.configure(debug: "test")
