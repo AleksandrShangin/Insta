@@ -24,7 +24,7 @@ final class ProfileRouter: BaseRouter {
                 )
             )
         }
-        let vc = ListViewController(data: mockData)
+        let vc = FollowersListFactory(data: mockData).build()
         vc.title = "Followers"
         vc.navigationItem.largeTitleDisplayMode = .never
         viewController.navigationController?.pushViewController(vc, animated: true)
@@ -41,7 +41,7 @@ final class ProfileRouter: BaseRouter {
                 )
             )
         }
-        let vc = ListViewController(data: mockData)
+        let vc = FollowersListFactory(data: mockData).build()
         vc.title = "Following"
         vc.navigationItem.largeTitleDisplayMode = .never
         viewController.navigationController?.pushViewController(vc, animated: true)

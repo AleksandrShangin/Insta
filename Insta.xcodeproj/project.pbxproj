@@ -52,6 +52,10 @@
 		84F9D97A2ADD7278004005CA /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D9762ADD7278004005CA /* EditProfileView.swift */; };
 		84F9D97B2ADD7278004005CA /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D9772ADD7278004005CA /* EditProfileViewModel.swift */; };
 		84F9D97E2ADD74DC004005CA /* EditProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D97D2ADD74DC004005CA /* EditProfileHeader.swift */; };
+		84F9D9842ADDA6D9004005CA /* FollowersListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D9802ADDA6D9004005CA /* FollowersListFactory.swift */; };
+		84F9D9852ADDA6D9004005CA /* FollowersListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D9812ADDA6D9004005CA /* FollowersListRouter.swift */; };
+		84F9D9862ADDA6D9004005CA /* FollowersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D9822ADDA6D9004005CA /* FollowersListView.swift */; };
+		84F9D9872ADDA6D9004005CA /* FollowersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D9832ADDA6D9004005CA /* FollowersListViewModel.swift */; };
 		FA2DF9A42631A54E00F396EE /* NoNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DF9A32631A54E00F396EE /* NoNotificationsView.swift */; };
 		FA2DF9A82631C81000F396EE /* NotificationFollowEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DF9A72631C81000F396EE /* NotificationFollowEventTableViewCell.swift */; };
 		FA2DF9AC2631C86D00F396EE /* NotificationLikeEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2DF9AB2631C86D00F396EE /* NotificationLikeEventTableViewCell.swift */; };
@@ -76,7 +80,7 @@
 		FA89CE5426050323004A827D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE5326050323004A827D /* PostViewController.swift */; };
 		FA89CE572605034F004A827D /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE562605034F004A827D /* EditProfileViewController.swift */; };
 		FA89CE5A2605041E004A827D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE592605041E004A827D /* SettingsViewController.swift */; };
-		FA89CE5D26050473004A827D /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE5C26050473004A827D /* ListViewController.swift */; };
+		FA89CE5D26050473004A827D /* FollowersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE5C26050473004A827D /* FollowersListViewController.swift */; };
 		FA89CE6026050557004A827D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE5F26050557004A827D /* SearchViewController.swift */; };
 		FA89CE6326050574004A827D /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE6226050574004A827D /* SearchResultViewController.swift */; };
 		FA89CE66260505CB004A827D /* PostEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA89CE65260505CB004A827D /* PostEditorViewController.swift */; };
@@ -141,6 +145,10 @@
 		84F9D9762ADD7278004005CA /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		84F9D9772ADD7278004005CA /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		84F9D97D2ADD74DC004005CA /* EditProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHeader.swift; sourceTree = "<group>"; };
+		84F9D9802ADDA6D9004005CA /* FollowersListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListFactory.swift; sourceTree = "<group>"; };
+		84F9D9812ADDA6D9004005CA /* FollowersListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListRouter.swift; sourceTree = "<group>"; };
+		84F9D9822ADDA6D9004005CA /* FollowersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListView.swift; sourceTree = "<group>"; };
+		84F9D9832ADDA6D9004005CA /* FollowersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListViewModel.swift; sourceTree = "<group>"; };
 		BEF14AEBB96A64AA1C916242 /* Pods-Insta.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Insta.debug.xcconfig"; path = "Target Support Files/Pods-Insta/Pods-Insta.debug.xcconfig"; sourceTree = "<group>"; };
 		F9305F96689D60D4124626C0 /* Pods-Insta.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Insta.release.xcconfig"; path = "Target Support Files/Pods-Insta/Pods-Insta.release.xcconfig"; sourceTree = "<group>"; };
 		FA2DF9A32631A54E00F396EE /* NoNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNotificationsView.swift; sourceTree = "<group>"; };
@@ -169,7 +177,7 @@
 		FA89CE5326050323004A827D /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		FA89CE562605034F004A827D /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		FA89CE592605041E004A827D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		FA89CE5C26050473004A827D /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		FA89CE5C26050473004A827D /* FollowersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersListViewController.swift; sourceTree = "<group>"; };
 		FA89CE5F26050557004A827D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FA89CE6226050574004A827D /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		FA89CE65260505CB004A827D /* PostEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditorViewController.swift; sourceTree = "<group>"; };
@@ -254,6 +262,7 @@
 				84F25AC62AD4153E00421B07 /* Profile */,
 				84F9D9732ADD66CF004005CA /* EditProfile */,
 				84F9D96A2ADD52E9004005CA /* Settings */,
+				84F9D97F2ADDA6A3004005CA /* FollowersList */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -415,12 +424,25 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		FA65A070260E10F700F9A881 /* Cells */ = {
+		84F9D97F2ADDA6A3004005CA /* FollowersList */ = {
+			isa = PBXGroup;
+			children = (
+				84F9D9882ADDA967004005CA /* Views */,
+				84F9D9822ADDA6D9004005CA /* FollowersListView.swift */,
+				FA89CE5C26050473004A827D /* FollowersListViewController.swift */,
+				84F9D9832ADDA6D9004005CA /* FollowersListViewModel.swift */,
+				84F9D9812ADDA6D9004005CA /* FollowersListRouter.swift */,
+				84F9D9802ADDA6D9004005CA /* FollowersListFactory.swift */,
+			);
+			path = FollowersList;
+			sourceTree = "<group>";
+		};
+		84F9D9882ADDA967004005CA /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				FAC9BBCD262881A300DE12D9 /* UserFollowTableViewCell.swift */,
 			);
-			path = Cells;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FA89CE142604F9D2004A827D = {
@@ -450,7 +472,6 @@
 				FA89CE362604FC14004A827D /* Models */,
 				FAB03E66267FD748000C69A5 /* Services */,
 				84F25AC52AD4152F00421B07 /* Modules */,
-				FA89CE372604FC1F004A827D /* Views */,
 				FA89CE382604FC29004A827D /* Controllers */,
 				FA89CE352604FC01004A827D /* Resources */,
 				FA89CE2B2604F9D9004A827D /* LaunchScreen.storyboard */,
@@ -481,14 +502,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		FA89CE372604FC1F004A827D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FA65A070260E10F700F9A881 /* Cells */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		FA89CE382604FC29004A827D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,7 +530,6 @@
 		FA89CE822605EC94004A827D /* General */ = {
 			isa = PBXGroup;
 			children = (
-				FA89CE5C26050473004A827D /* ListViewController.swift */,
 				FA89CE5F26050557004A827D /* SearchViewController.swift */,
 				FA89CE6226050574004A827D /* SearchResultViewController.swift */,
 				FA89CE65260505CB004A827D /* PostEditorViewController.swift */,
@@ -668,6 +680,7 @@
 				FA2DF9A42631A54E00F396EE /* NoNotificationsView.swift in Sources */,
 				FAB03E7026806B04000C69A5 /* EditProfileFormModel.swift in Sources */,
 				84F25ACB2AD415BF00421B07 /* ModuleFactory.swift in Sources */,
+				84F9D9852ADDA6D9004005CA /* FollowersListRouter.swift in Sources */,
 				FA65A077260E258200F9A881 /* PostHeaderTableViewCell.swift in Sources */,
 				84F9D9652ADD2F88004005CA /* ExploreFactory.swift in Sources */,
 				FA2DF9A82631C81000F396EE /* NotificationFollowEventTableViewCell.swift in Sources */,
@@ -675,6 +688,7 @@
 				FA89CE66260505CB004A827D /* PostEditorViewController.swift in Sources */,
 				8402D1692AD8079400883CB5 /* HomeFactory.swift in Sources */,
 				84F9D97B2ADD7278004005CA /* EditProfileViewModel.swift in Sources */,
+				84F9D9862ADDA6D9004005CA /* FollowersListView.swift in Sources */,
 				FA89CE8B2605F12E004A827D /* StorageService.swift in Sources */,
 				84F25AD02AD4161700421B07 /* ProfileFactory.swift in Sources */,
 				84F9D96F2ADD5340004005CA /* SettingsFactory.swift in Sources */,
@@ -684,6 +698,7 @@
 				8402D1732AD86C2500883CB5 /* LoginRouter.swift in Sources */,
 				8402D17D2AD8765F00883CB5 /* RegistrationView.swift in Sources */,
 				FA89CE5426050323004A827D /* PostViewController.swift in Sources */,
+				84F9D9872ADDA6D9004005CA /* FollowersListViewModel.swift in Sources */,
 				84F9D9792ADD7278004005CA /* EditProfileRouter.swift in Sources */,
 				FA65A08A2611B7B700F9A881 /* ProfileTabsCollectionReusableView.swift in Sources */,
 				84F25ADC2AD456D400421B07 /* NotificationsView.swift in Sources */,
@@ -727,9 +742,10 @@
 				FAB03E6826806619000C69A5 /* User.swift in Sources */,
 				8402D1742AD86C2500883CB5 /* LoginView.swift in Sources */,
 				84F9D9702ADD5340004005CA /* SettingsRouter.swift in Sources */,
+				84F9D9842ADDA6D9004005CA /* FollowersListFactory.swift in Sources */,
 				FA65A07A260E261A00F9A881 /* PostActionsTableViewCell.swift in Sources */,
 				8402D1642AD6F1C300883CB5 /* UIViewController+Extensions.swift in Sources */,
-				FA89CE5D26050473004A827D /* ListViewController.swift in Sources */,
+				FA89CE5D26050473004A827D /* FollowersListViewController.swift in Sources */,
 				84F25AED2AD53A4400421B07 /* PostView.swift in Sources */,
 				FA89CE5A2605041E004A827D /* SettingsViewController.swift in Sources */,
 			);

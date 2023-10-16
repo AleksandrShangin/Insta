@@ -1,5 +1,5 @@
 //
-//  ListViewController.swift
+//  FollowersListViewController.swift
 //  Insta
 //
 //  Created by Alex on 3/19/21.
@@ -7,24 +7,18 @@
 
 import UIKit
 
-final class ListViewController: UIViewController {
+final class FollowersListViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let data: [UserRelationship]
-        
-    // MARK: - UI
+    private weak var tableView: UITableView!
     
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.registerCell(UserFollowTableViewCell.self)
-        return tableView
-    }()
+    private let viewModel: FollowersListViewModel
     
     // MARK: - Init
     
-    init(data: [UserRelationship]) {
-        self.data = data
+    init(viewModel: FollowersListViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,31 +28,34 @@ final class ListViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        view.backgroundColor = .systemBackground
+    override func loadView() {
+        let view = FollowersListView()
+        self.view = view
+        self.tableView = view.tableView
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureViews()
+    }
+    
+    private func configureViews() {
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
 }
 
 
 
-extension ListViewController: UITableViewDataSource, UITableViewDelegate {
+extension FollowersListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        data.count
+        viewModel.data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueCell(UserFollowTableViewCell.self, indexPath: indexPath)
-        cell.configure(with: data[indexPath.row])
+        cell.configure(with: viewModel.data[indexPath.row])
         cell.delegate = self
         return cell
     }
@@ -70,13 +67,13 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // Go to profile of selected cell
-        let model = data[indexPath.row]
+        let model = viewModel.data[indexPath.row]
     }
 }
 
 
 
-extension ListViewController: UserFollowTableViewCellDelegate {
+extension FollowersListViewController: UserFollowTableViewCellDelegate {
     func didTapFollowUnfollowButton(model: UserRelationship) {
         print("Follow button tapped :: status \(model.type)")
         switch model.type {
@@ -89,10 +86,3 @@ extension ListViewController: UserFollowTableViewCellDelegate {
         }
     }
 }
-
-
-
-
-
-
-
