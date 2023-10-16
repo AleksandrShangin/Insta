@@ -10,7 +10,7 @@ import SafariServices
 
 final class SettingsRouter: BaseRouter {
     func showEditProfile() {
-        let vc = EditProfileViewController()
+        let vc = EditProfileFactory().build()
         vc.title = "Edit Profile"
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen

@@ -48,8 +48,7 @@ final class ProfileRouter: BaseRouter {
     }
     
     func showEditProfile() {
-        let vc = EditProfileViewController()
-        vc.title = "Edit Profile"
+        let vc = EditProfileFactory().build()
         vc.navigationItem.largeTitleDisplayMode = .never
         self.viewController.present(UINavigationController(rootViewController: vc), animated: true)
     }

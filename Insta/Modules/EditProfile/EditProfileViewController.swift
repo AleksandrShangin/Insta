@@ -18,16 +18,39 @@ final class EditProfileViewController: UIViewController {
     
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(FormTableViewCell.self, forCellReuseIdentifier: FormTableViewCell.identifier)
+        tableView.registerCell(FormTableViewCell.self)
         return tableView
     }()
+
     
+//    private weak var tableView: UITableView!
+    
+    private let viewModel: EditProfileViewModel
+    
+    // MARK: - Init
+    
+    init(viewModel: EditProfileViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
+    
+//    override func loadView() {
+//        let view = EditProfileView()
+//        self.view = view
+//        self.tableView = view.tableView
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
+        navigationItem.title = "Edit Profile"
         // Table View
         view.addSubview(tableView)
         tableView.dataSource = self
@@ -66,6 +89,8 @@ final class EditProfileViewController: UIViewController {
     }
     
     private func createTableHeaderView() -> UIView {
+        print(UIScreen.main.bounds.height)
+        print("UIVIEW SIZE :: \(view.height)")
         let header = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: view.height/4).integral)
         let size = header.height/1.5
         let profilePhotoButton = UIButton(frame: CGRect(x: (view.width - size)/2, y: (header.height-size)/2, width: size, height: size))
@@ -76,11 +101,9 @@ final class EditProfileViewController: UIViewController {
         profilePhotoButton.tintColor = .label
         
         profilePhotoButton.addTarget(self, action: #selector(didTapProfilePhotoButton), for: .touchUpInside)
-        if #available(iOS 13.0, *) {
-            profilePhotoButton.setBackgroundImage(UIImage(systemName: "person.circle"), for: .normal)
-        } else {
-            // Fallback on earlier versions
-        }
+        
+        profilePhotoButton.setBackgroundImage(UIImage(systemName: "person.circle"), for: .normal)
+        
         profilePhotoButton.layer.borderWidth = 1
         profilePhotoButton.layer.borderColor = UIColor.secondarySystemBackground.cgColor
         return header
@@ -90,19 +113,6 @@ final class EditProfileViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func didTapProfilePhotoButton() {
-        
-    }
-    
-    @objc private func didTapSave() {
-        // Save info to database
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc private func didTapCancel() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc private func didTapChangeProfilePicture() {
         let actionSheet = UIAlertController(title: "Profile Picture", message: "Change profile picture", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
             
@@ -114,6 +124,15 @@ final class EditProfileViewController: UIViewController {
         actionSheet.popoverPresentationController?.sourceView = view
         actionSheet.popoverPresentationController?.sourceRect = view.bounds
         present(actionSheet, animated: true, completion: nil)
+    }
+    
+    @objc private func didTapSave() {
+        // Save info to database
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func didTapCancel() {
+        dismiss(animated: true, completion: nil)
     }
     
 }
@@ -139,7 +158,7 @@ extension EditProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.section][indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: FormTableViewCell.identifier, for: indexPath) as! FormTableViewCell
+        let cell = tableView.dequeueCell(FormTableViewCell.self, indexPath: indexPath)
         cell.configure(with: model)
         cell.delegate = self
         return cell
@@ -150,12 +169,8 @@ extension EditProfileViewController: UITableViewDataSource {
 // MARK: - Extension for FormTableViewCellDelegate
 
 extension EditProfileViewController: FormTableViewCellDelegate {
-    
     func formTableViewCell(cell: FormTableViewCell, didUpdateField updatedModel: EditProfileFormModel) {
         // Update model
         print(updatedModel.value ?? "nil")
     }
-    
-    
 }
-

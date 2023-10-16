@@ -15,14 +15,6 @@ final class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     // MARK: - Properties
     
-    static let identifier = "FormTableViewCell"
-    
-    private var model: EditProfileFormModel?
-    
-    public weak var delegate: FormTableViewCellDelegate?
-        
-    // MARK: - UI
-    
     private let formlabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
@@ -36,26 +28,24 @@ final class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         return field
     }()
     
+    private var model: EditProfileFormModel?
+    
+    public weak var delegate: FormTableViewCellDelegate?
+    
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        clipsToBounds = true
-        contentView.addSubview(formlabel)
-        contentView.addSubview(textField)
-        textField.delegate = self
-        selectionStyle = .none
+        setupSubviews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(with model: EditProfileFormModel) {
-        self.model = model
-        formlabel.text = model.label
-        textField.placeholder = model.placeholder
-        textField.text = model.value
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupConstraints()
     }
     
     override func prepareForReuse() {
@@ -65,13 +55,40 @@ final class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         textField.text = nil
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        // Assign frames
-        formlabel.frame = CGRect(x: 5, y: 0, width: contentView.width/3, height: contentView.height)
-        textField.frame = CGRect(x: formlabel.right + 5, y: 0, width: contentView.width - 10 - formlabel.width, height: contentView.height)
+    // MARK: - Setup
+    
+    private func setupSubviews() {
+        clipsToBounds = true
+        selectionStyle = .none
+        
+        contentView.addSubview(formlabel)
+        contentView.addSubview(textField)
+        textField.delegate = self
     }
     
+    private func setupConstraints() {
+        formlabel.frame = CGRect(
+            x: 5,
+            y: 0,
+            width: contentView.width/3,
+            height: contentView.height
+        )
+        textField.frame = CGRect(
+            x: formlabel.right + 5,
+            y: 0,
+            width: contentView.width - 10 - formlabel.width,
+            height: contentView.height
+        )
+    }
+    
+    // MARK: - Configure
+    
+    public func configure(with model: EditProfileFormModel) {
+        self.model = model
+        formlabel.text = model.label
+        textField.placeholder = model.placeholder
+        textField.text = model.value
+    }
     
     // MARK: - TextField
     
@@ -84,6 +101,5 @@ final class FormTableViewCell: UITableViewCell, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
     
 }
