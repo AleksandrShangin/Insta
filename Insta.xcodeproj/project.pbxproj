@@ -228,6 +228,7 @@
 			children = (
 				8402D16D2AD86BF000883CB5 /* Login */,
 				8402D1762AD8759D00883CB5 /* Registration */,
+				84F9D9692ADD4AF9004005CA /* TabBar */,
 				84F25AEF2AD69CEE00421B07 /* Home */,
 				84F9D9602ADD2EF8004005CA /* Explore */,
 				84F25AE62AD53A0900421B07 /* Post */,
@@ -352,6 +353,14 @@
 			path = Explore;
 			sourceTree = "<group>";
 		};
+		84F9D9692ADD4AF9004005CA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FAB03E64267FD670000C69A5 /* TabBarViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		FA65A070260E10F700F9A881 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,7 +448,6 @@
 		FA89CE492604FFDA004A827D /* Core Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				FAB03E64267FD670000C69A5 /* TabBarViewController.swift */,
 				FA89CE3F2604FEA2004A827D /* CameraViewController.swift */,
 			);
 			path = "Core Tabs";
