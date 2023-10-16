@@ -9,8 +9,7 @@ import UIKit
 
 final class ProfileRouter: BaseRouter {
     func showSettings() {
-        let vc = SettingsViewController()
-        vc.title = "Settings"
+        let vc = SettingsFactory().build()
         viewController.navigationController?.pushViewController(vc, animated: true)
     }
     

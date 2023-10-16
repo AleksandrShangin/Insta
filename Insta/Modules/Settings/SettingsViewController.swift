@@ -6,46 +6,82 @@
 //
 
 import UIKit
-import SafariServices
+import Combine
 
 struct SettingCellModel {
     let title: String
     let handler: () -> Void
 }
 
-/// View Controller to show user settings
+enum SettingsURLType {
+    case terms, privacy, help
+}
+
 final class SettingsViewController: UIViewController {
 
     // MARK: - Properties
     
     private var data = [[SettingCellModel]]()
-        
-    // MARK: - UI
     
-    private let tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        return tableView
-    }()
+    private weak var tableView: UITableView!
+    
+    private let viewModel: SettingsViewModel
+    private var router: SettingsRouter!
+    
+    private var subscriptions = Set<AnyCancellable>()
+    
+    // MARK: - Init
+    
+    init(viewModel: SettingsViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
+    
+    override func loadView() {
+        let view = SettingsView()
+        self.view = view
+        self.tableView = view.tableView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureModels()
-        view.backgroundColor = .systemBackground
-        // Table View
-        view.addSubview(tableView)
+        configureRouter()
+        configureNavigationBar()
+        configureViews()
+        configureBindings()
+    }
+    
+    // MARK: - Configure
+    
+    private func configureRouter() {
+        router = SettingsRouter(viewController: self)
+    }
+    
+    private func configureNavigationBar() {
+        navigationItem.title = "Settings"
+    }
+    
+    private func configureViews() {
         tableView.delegate = self
         tableView.dataSource = self
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
+    private func configureBindings() {
+        viewModel.logOutSuccess
+            .sink { [weak self] in
+                if $0 {
+                    self?.router.showLogin()
+                }
+            }
+            .store(in: &subscriptions)
     }
-    
-    // MARK: - Private Methods
     
     private func configureModels() {
         data.append([
@@ -76,13 +112,11 @@ final class SettingsViewController: UIViewController {
             })
         ])
     }
+    
+    // MARK: - Actions
 
     private func didTapEditProfile() {
-        let vc = EditProfileViewController()
-        vc.title = "Edit Profile"
-        let navVC = UINavigationController(rootViewController: vc)
-        navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true, completion: nil)
+        self.router.showEditProfile()
     }
     
     private func didTapInviteFriends() {
@@ -94,58 +128,29 @@ final class SettingsViewController: UIViewController {
     }
     
     private func openURL(type: SettingsURLType) {
-        let urlString: String
-        switch type {
-        case .terms:
-            urlString = "https://help.instagram.com/581066165581870"
-        case .privacy:
-            urlString = "https://help.instagram.com/519522125107875"
-        case .help:
-            urlString = "https://help.instagram.com"
-        }
-        guard let url = URL(string: urlString) else {
-            return
-        }
-        let vc = SFSafariViewController(url: url)
-        present(vc, animated: true, completion: nil)
-    }
-    
-    enum SettingsURLType {
-        case terms, privacy, help
+        self.router.openURL(type: type)
     }
     
     private func didTapLogOut() {
-        let actionSheet = UIAlertController(title: "Log Out", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        actionSheet.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { _ in
-            AuthService.shared.logOut { (success) in
-                DispatchQueue.main.async {
-                    if success {
-                        // present log in
-                        let loginVC = LoginFactory().build()
-                        loginVC.modalPresentationStyle = .fullScreen
-                        self.present(loginVC, animated: true) {
-                            self.navigationController?.popToRootViewController(animated: false)
-                            self.tabBarController?.selectedIndex = 0
-                        }
-                    } else {
-                        // error occured
-                        fatalError("Could not log out user")
-                    }
+        showAlert(
+            title: "Log Out",
+            message: "Are you sure you want to log out?",
+            preferredStyle: .actionSheet,
+            actions: [
+                UIAlertAction(title: "Cancel", style: .cancel),
+                UIAlertAction(title: "OK", style: .destructive) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.viewModel.logOut()
                 }
-            }
-        }))
-        actionSheet.popoverPresentationController?.sourceView = tableView
-        actionSheet.popoverPresentationController?.sourceRect = tableView.bounds
-        present(actionSheet, animated: true, completion: nil)
+            ]
+        )
     }
     
 }
 
 // MARK: - TableView Methods
 
-extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
-    
+extension SettingsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return data.count
     }
@@ -160,14 +165,12 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.accessoryType = .disclosureIndicator
         return cell
     }
-    
+}
+
+extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // handle cell selection
         data[indexPath.section][indexPath.row].handler()
     }
-    
 }
-
-
-
