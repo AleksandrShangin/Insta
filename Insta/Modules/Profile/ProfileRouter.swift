@@ -10,7 +10,7 @@ import UIKit
 final class ProfileRouter: BaseRouter {
     func showSettings() {
         let vc = SettingsFactory().build()
-        viewController.navigationController?.pushViewController(vc, animated: true)
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
     func showFollowers() {
@@ -27,7 +27,7 @@ final class ProfileRouter: BaseRouter {
         let vc = FollowersListFactory(data: mockData).build()
         vc.title = "Followers"
         vc.navigationItem.largeTitleDisplayMode = .never
-        viewController.navigationController?.pushViewController(vc, animated: true)
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
     func showFollowing() {
@@ -44,13 +44,13 @@ final class ProfileRouter: BaseRouter {
         let vc = FollowersListFactory(data: mockData).build()
         vc.title = "Following"
         vc.navigationItem.largeTitleDisplayMode = .never
-        viewController.navigationController?.pushViewController(vc, animated: true)
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
     func showEditProfile() {
         let vc = EditProfileFactory().build()
         vc.navigationItem.largeTitleDisplayMode = .never
-        self.viewController.present(UINavigationController(rootViewController: vc), animated: true)
+        viewController?.present(UINavigationController(rootViewController: vc), animated: true)
     }
     
     func showPost() {

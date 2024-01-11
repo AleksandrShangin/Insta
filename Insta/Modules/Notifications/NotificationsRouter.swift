@@ -13,6 +13,6 @@ final class NotificationsRouter: BaseRouter {
 //        let vc = PostViewController(model: post)
         vc.title = post.postType.rawValue
         vc.navigationItem.largeTitleDisplayMode = .never
-        viewController.navigationController?.pushViewController(vc, animated: true)
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -14,15 +14,15 @@ final class SettingsRouter: BaseRouter {
         vc.title = "Edit Profile"
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
-        viewController.present(navVC, animated: true, completion: nil)
+        viewController?.present(navVC, animated: true, completion: nil)
     }
     
     func showLogin() {
         let loginVC = LoginFactory().build()
         loginVC.modalPresentationStyle = .fullScreen
-        viewController.present(loginVC, animated: true) { [weak self] in
-            self?.viewController.navigationController?.popToRootViewController(animated: false)
-            self?.viewController.tabBarController?.selectedIndex = 0
+        viewController?.present(loginVC, animated: true) { [weak self] in
+            self?.viewController?.navigationController?.popToRootViewController(animated: false)
+            self?.viewController?.tabBarController?.selectedIndex = 0
         }
     }
     
@@ -40,6 +40,6 @@ final class SettingsRouter: BaseRouter {
             return
         }
         let vc = SFSafariViewController(url: url)
-        viewController.present(vc, animated: true, completion: nil)
+        viewController?.present(vc, animated: true, completion: nil)
     }
 }

@@ -63,16 +63,16 @@ final class PostContentTableViewCell: UITableViewCell {
         postImageView.image = UIImage(named: "test")
         
         return
-        switch post.postType {
-        case .photo:
-            self.postImageView.sd_setImage(with: post.postURL)
-        case .video:
-            // load and play video
-            self.player = AVPlayer(url: post.postURL)
-            playerLayer.player = self.player
-            playerLayer.player?.volume = 0
-            playerLayer.player?.play()
-        }
+//        switch post.postType {
+//        case .photo:
+//            self.postImageView.sd_setImage(with: post.postURL)
+//        case .video:
+//            // load and play video
+//            self.player = AVPlayer(url: post.postURL)
+//            playerLayer.player = self.player
+//            playerLayer.player?.volume = 0
+//            playerLayer.player?.play()
+//        }
     }
     
 }

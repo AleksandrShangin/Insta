@@ -12,7 +12,7 @@ final class LoginRouter: BaseRouter {
     func showRegistration() {
         let vc = RegistrationFactory().build()
         vc.title = "Create Account"
-        viewController.present(UINavigationController(rootViewController: vc), animated: true)
+        viewController?.present(UINavigationController(rootViewController: vc), animated: true)
     }
     
     func showTerms() {
@@ -20,7 +20,7 @@ final class LoginRouter: BaseRouter {
             return
         }
         let vc = SFSafariViewController(url: url)
-        viewController.present(vc, animated: true)
+        viewController?.present(vc, animated: true)
     }
     
     func showPolicy() {
@@ -28,6 +28,6 @@ final class LoginRouter: BaseRouter {
             return
         }
         let vc = SFSafariViewController(url: url)
-        viewController.present(vc, animated: true)
+        viewController?.present(vc, animated: true)
     }
 }

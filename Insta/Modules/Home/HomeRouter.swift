@@ -11,6 +11,6 @@ final class HomeRouter: BaseRouter {
     func showLogin() {
         let loginVC = LoginFactory().build()
         loginVC.modalPresentationStyle = .fullScreen
-        viewController.present(loginVC, animated: false, completion: nil)
+        viewController?.present(loginVC, animated: false, completion: nil)
     }
 }

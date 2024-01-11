@@ -31,6 +31,6 @@ final class ExploreRouter: BaseRouter {
             owner: user
         )
         let vc = PostFactory(post: post).build()
-        viewController.navigationController?.pushViewController(vc, animated: true)
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
