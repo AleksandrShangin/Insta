@@ -19,11 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         
+        setupWindow()
+        
+        return true
+    }
+    
+    private func setupWindow() {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = TabBarViewController()
         window?.makeKeyAndVisible()
-        
-        return true
     }
     
 }
